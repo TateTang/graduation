@@ -1,0 +1,10 @@
+/**index.wxss**/
+@import "../../src/wxss/weui.wxss";
+.radio-group{
+  margin-top: 10px;
+  
+}
+.radio-group .radio{
+  margin-right: 30px;
+  font-size: 14px;
+}

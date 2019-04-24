@@ -1,0 +1,33 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/comein/comein",
+    "pages/logs/logs",
+    "pages/teacher/teacher-index",
+    "pages/student/student-index",
+    "pages/teacher/teacher-own/info-about/info-about",
+    "pages/teacher/teacher-own/info-course/info-course",
+    "pages/teacher/teacher-own/info-grade/info-grade",
+    "pages/teacher/teacher-own/info-leave/info-leave",
+    "pages/teacher/teacher-own/info-person/info-person",
+    "pages/teacher/teacher-own/info-share/info-share",
+    "pages/student/student-own/info-about/info-about",
+    "pages/student/student-own/info-course/info-course",
+    "pages/student/student-own/info-grade/info-grade",
+    "pages/student/student-own/info-leave/info-leave",
+    "pages/student/student-own/info-person/info-person",
+    "pages/student/student-own/info-share/info-share",
+    "pages/teacher/teacher-own/info-grade/info-grade-operation/info-grade-operation",
+    "pages/teacher/teacher-own/info-course/info-course-operation/info-course-operation"
+  ],
+  "window": {
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1296DB",
+    "navigationBarTitleText": "课堂考勤吧",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#1296DB"
+  },
+  "sitemapLocation": "sitemap.json"
+}

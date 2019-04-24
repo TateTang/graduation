@@ -1,0 +1,30 @@
+/* pages/student/sudent-own/info-about/info-about.wxss */
+@import "../../../../src/wxss/weui.wxss";
+.weui-cell__bd{
+  font-size:14px;
+}
+.weui-cell__ft{
+  font-size: 12px;
+
+}
+.weui-cells_after-title{
+  margin-top: 20px;
+}
+.weui-cells__title{
+  text-align: center;
+}
+image{
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.weui-footer{
+    margin-bottom: 50px;
+}
+.weui-footer_fixed-bottom{
+    margin-bottom: 0;
+}
+.weui-cell{
+line-height: 1.47;
+}

@@ -1,0 +1,37 @@
+<!--pages/teacher/teacher-own/info-grade/info-grade-operation/info-grade-operation.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-cells__title">基本信息</view>
+
+    <form bindsubmit='formSubmit' bindreset='formReset'>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input myclass">
+          <view class="weui-cell__hd">
+            <view class="weui-label">班级名称
+              <i class="mystar">*</i>
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" name='name' placeholder='请输入班级名称' value='{{gradeName}}' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input myclass">
+          <view class="weui-cell__hd">
+            <view class="weui-label ">班级人数
+              <i class="mystar">*</i>
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input type='number' class="weui-input" name='count' placeholder='请输入班级人数' value='{{gradeCount}}' />
+          </view>
+        </view>
+      </view>
+
+       <view class="edit">
+        <button type='default' form-type='submit'>提交</button>
+        <button type='default' bindtap='deleteGrade' data-gradeid='{{gradeId}}' data-gradename='{{gradeName}}' wx-if="{{pageType}}">删除</button>
+       </view> 
+    </form>
+  </view>
+   
+</view>

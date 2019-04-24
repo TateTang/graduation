@@ -1,0 +1,86 @@
+<!--pages/student/own/own.wxml-->
+<!-- <view class='studentown'>
+
+  <view class='userinfo'>
+    <image class='userinfo-avatar' src='{{userInfo.avatarUrl}}'
+    mode='cover'></image>
+    <text class='userinfo-nickname' >{{userInfo.nickName}}</text>
+  </view>
+</view> -->
+<view class='mine'>
+  <!--获取用户昵称和头像-->
+  <view class="header">
+    <view class="userinfo-avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="userinfo-nickname">
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+  <!--菜单栏-->
+  <view class='menu'>
+    <!--菜单栏信息设置-->
+    <view class='info-set'>
+       <!-- <view class='title'>信息</view>  -->
+
+      <navigator url='/pages/student/student-own/info-person/info-person'>
+        <view class='set'>
+          <text class='iconfont icon-gerenxinxi'></text>
+          <text class='per'>个人信息</text>
+          <text class='com'>说明文字</text>
+        </view>
+      </navigator>
+
+      <navigator url='/pages/student/student-own/info-leave/info-leave'>
+        <view class='set'>
+          <text class='iconfont icon-qingjia1'></text>
+          <text class='per'>请假管理</text>
+          <text class='com'>说明文字</text>
+        </view>
+      </navigator>
+
+      <navigator url='/pages/student/student-own/info-grade/info-grade'>
+        <view class='set'>
+          <text class='iconfont icon-banjiguanli'></text>
+          <text class='per'>班级管理</text>
+          <text class='com'>说明文字</text>
+        </view>
+      </navigator>
+
+      <navigator url='/pages/student/student-own/info-course/info-course'>
+        <view class='set'>
+          <text class='iconfont icon-kechengguanli'></text>
+
+          <text class='per'>课程管理</text>
+          <text class='com'>说明文字</text>
+        </view>
+      </navigator>
+
+    </view>
+
+    <!--常用设置-->
+
+    <view class='about-set'>
+      <!-- <view class='title'>关于</view> -->
+      <navigator url='/pages/student/student-own/info-about/info-about'>
+        <view class="set">
+          <text class='iconfont icon-bangzhuguanyuwomen'></text>
+          <text class="per">关于我们</text>
+          <text class="com">说明文字</text>
+        </view>
+      </navigator>
+    </view>
+    <view class='share-set'>
+      <navigator url='/pages/student/student-own/info-share/info-share'>
+        <view class="set">
+          <text class='iconfont icon-fenxiang'></text>
+          <text class="per">分享</text>
+          <text class="com">说明文字</text>
+        </view>
+      </navigator>
+    </view>
+
+  </view>
+
+
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "firstPage": "/component/student-component/qiandao-component/qiandao",
+    "secondPage": "/component/student-component/control-component/control",
+    "thirdPage": "/component/student-component/own-component/own"}
+}

@@ -1,0 +1,16 @@
+/* pages/teacher/teacher-own/info-person/info-person.wxss */
+@import "../../../../src/wxss/weui.wxss";
+.myclass{
+  line-height: 2.0;
+}
+.edit{
+  position: absolute;
+  bottom:0;
+  margin:0 30px;
+  text-align: center;
+  width: calc(100% - 60px)
+}
+.edit button{
+  margin-bottom: 8px;
+  border-radius:5px;
+}

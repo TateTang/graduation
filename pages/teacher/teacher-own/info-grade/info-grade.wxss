@@ -1,0 +1,11 @@
+/* pages/teacher/teacher-own/info-grade/info-grade.wxss */
+@import "../../../../src/wxss/weui.wxss";
+.myclass{
+  line-height: 2.0;
+}
+
+.edit{
+  position: absolute;
+  bottom:0;
+  width: 100%
+}

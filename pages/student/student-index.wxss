@@ -1,0 +1,5 @@
+/* pages/student/student.wxss */
+/*
+导入图标文件
+*/
+@import "../../src/wxss/tabbar.wxss";
