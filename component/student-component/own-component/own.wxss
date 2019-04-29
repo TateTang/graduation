@@ -37,10 +37,17 @@ page {
 }
 .mine .header .userinfo-nickname{
   width: 70%;
-  padding-top:20px;
-  padding-bottom:10px;
+  padding-top:10px;
   margin:0 auto;
   font-size:18px;
+  text-align: left;
+}
+.mine .header .grade{
+  margin-top: 2px;
+  position: relative;
+  text-align: left;
+  font-size: 15px;
+  color: #636363;
 }
 .mine .header .userinfo-nickname button{
   border-radius:20px;
@@ -60,8 +67,8 @@ page {
 .mine .menu .set{
   padding:10px 15px;
   background-color: #fff;
-  font-size:17px;
-  line-height: 1.47;
+  font-size:20px;
+  line-height: 2.00;
   border-bottom:1px solid #f8f8f8;
 }
 .mine .menu .set .com{

@@ -1,2 +1,30 @@
 <!--pages/student/sudent-own/info-person/info-person.wxml-->
-<text>pages/student/sudent-own/info-person/info-person.wxml</text>
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-cells__title">个人信息</view>
+    <form bindsubmit='formSubmit' bindreset='formReset'>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input myclass">
+          <view class="weui-cell__hd">
+            <view class="weui-label">学号<i class="mystar">*</i></view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入工号" value='{{account}}' name='account' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input myclass">
+          <view class="weui-cell__hd">
+            <view class="weui-label">姓名<i class="mystar">*</i></view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入姓名" value='{{name}}' name='name'/>
+          </view>
+        </view>
+      </view>
+      <view class="edit">
+        <button type='default' form-type='submit'>保存</button>
+      </view>
+    </form>
+  </view>
+
+</view>

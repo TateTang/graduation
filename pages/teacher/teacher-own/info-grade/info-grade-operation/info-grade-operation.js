@@ -24,7 +24,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(app.globalData.openid);
     if(options.gradeId == -1){
       this.setData({
         pageType:false
@@ -130,11 +129,16 @@ Page({
     }
     var that = this;
     var formData = e.detail.value;//获取表单中的数据
-    var url = that.data.addUrl +"?openId=" + app.globalData.openid;//添加班级信息的url
+    var idData = { "openid": app.globalData.openid };//json对象
+    //console.log(idData);
+    formData.userobj = idData;
+
+    var url = that.data.addUrl;//添加班级信息的url
     if(that.data.gradeId!=-1){//点击的是编辑按钮， 判断是修改还是添加
       formData.id=that.data.gradeId;
       url = that.data.updateUrl+"?gradeId="+that.data.gradeId; //编辑按钮 修改班级信息
     }
+    console.log(JSON.stringify(formData));
     wx.request({
       url: url,
       data: JSON.stringify(formData),//json转字符串

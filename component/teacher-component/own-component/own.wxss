@@ -67,8 +67,8 @@ page {
 .mine .menu .set{
   padding:10px 15px;
   background-color: #fff;
-  font-size:17px;
-  line-height: 1.47;
+  font-size:20px;
+  line-height: 2.00;
   border-bottom:1px solid #f8f8f8;
 }
 .mine .menu .set .com{

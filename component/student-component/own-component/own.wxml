@@ -15,6 +15,7 @@
     </view>
     <view class="userinfo-nickname">
       <open-data type="userNickName"></open-data>
+      <view class='grade'>{{gradename}}</view>
     </view>
   </view>
   <!--菜单栏-->
@@ -42,7 +43,7 @@
       <navigator url='/pages/student/student-own/info-grade/info-grade'>
         <view class='set'>
           <text class='iconfont icon-banjiguanli'></text>
-          <text class='per'>班级管理</text>
+          <text class='per'>加入班级</text>
           <text class='com'>说明文字</text>
         </view>
       </navigator>

@@ -1,2 +1,68 @@
 <!--pages/student/sudent-own/info-leave/info-leave.wxml-->
-<text>pages/student/sudent-own/info-leave/info-leave.wxml</text>
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-cells__title">基本信息</view>
+
+    <form bindsubmit='formSubmit' bindreset='formReset'>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input myclass">
+          <view class="weui-cell__hd">
+            <view class="weui-label">姓名
+              <i class="mystar">*</i>
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" value='{{username}}' placeholder='请输入你的姓名' disabled='true' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input myclass">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">日期<i class="mystar">*</i></view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{date}}" start="2015-09-01" end="2050-09-01" name="leavetime" bindchange="bindDateChange">
+                        <view class="weui-input">{{date}}</view>
+                    </picker>
+                </view>
+            </view>
+
+         <view class="weui-cell weui-cell_input myclass">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">老师<i class="mystar">*</i></view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker  value="{{teacherindex}}" range="{{teacherarray}}" bindchange="bindTeacherChange" >
+                        <view class="weui-input">{{teacherarray[teacherindex]}}</view>
+                    </picker>
+                </view>
+            </view>
+
+        <view class="weui-cell weui-cell_input myclass">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">课程<i class="mystar">*</i></view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker  value="{{courseindex}}" range="{{coursearray}}" bindchange="bindCourseChange" >
+                        <view class="weui-input">{{coursearray[courseindex]}}</view>
+                    </picker>
+                </view>
+            </view>
+        
+         <view class="weui-cell weui-cell_input myclass myclass">原因<i class="mystar">*</i></view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入文本" style="height: 7.3em" name="leavecontent"/>
+                    <view class="weui-textarea-counter">0/200</view>
+                </view>
+            </view>
+        </view>
+      </view>
+
+       <view class="edit">
+        <button type='default' form-type='submit'>提交</button>
+       </view> 
+    </form>
+  </view>
+   
+</view>

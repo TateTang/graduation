@@ -2,6 +2,7 @@
 @import "../../../../src/wxss/weui.wxss";
 .myclass{
   line-height: 2.0;
+  font-size: 18px;
 }
 
 .edit{

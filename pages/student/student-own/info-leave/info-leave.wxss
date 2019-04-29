@@ -1,1 +1,3 @@
 /* pages/student/sudent-own/info-leave/info-leave.wxss */
+@import "../../../../src/wxss/weui.wxss";
+@import "../../../../src/wxss/mywxss.wxss";

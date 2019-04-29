@@ -1,1 +1,5 @@
 /* pages/student/sudent-own/info-grade/info-grade.wxss */
+/*导入外部css
+*/
+@import "../../../../src/wxss/weui.wxss";
+@import "../../../../src/wxss/mywxss.wxss";

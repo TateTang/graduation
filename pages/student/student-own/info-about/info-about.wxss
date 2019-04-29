@@ -1,10 +1,10 @@
 /* pages/student/sudent-own/info-about/info-about.wxss */
 @import "../../../../src/wxss/weui.wxss";
 .weui-cell__bd{
-  font-size:14px;
+  font-size:18px;
 }
 .weui-cell__ft{
-  font-size: 12px;
+  font-size: 16px;
 
 }
 .weui-cells_after-title{
@@ -26,5 +26,5 @@ image{
     margin-bottom: 0;
 }
 .weui-cell{
-line-height: 1.47;
+line-height: 2.00;
 }

@@ -34,7 +34,7 @@ Page({
       wx.request({
         url: app.globalData.localhttp+'grade/getAll',  
         method:'GET',
-        data:{},
+        data: {'teacheropenId':app.globalData.openid},
         success: function(res){
           var list =  res.data.dataList;//获取数据
           if(list==null){

@@ -29,11 +29,6 @@ Page({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var code = res.code;
-        //console.log(code);
-        // var appId = "wxc17bd0526af4ec36";
-        // var appSecret = "ef8cae843d7f4b2b17b16da7e91eaa14";
-        // var url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + appSecret + '&js_code=' + code + '&grant_type=authorization_code'
-        //调用后端，获取微信的session_key,secret
         wx.request({
           url: app.globalData.localhttp + 'wxLogin/wxLogin?code=' + code,
           method: 'POST',

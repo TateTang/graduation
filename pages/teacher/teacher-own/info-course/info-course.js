@@ -36,7 +36,7 @@ Page({
     wx.request({
       url: app.globalData.localhttp+'course/getAll',
       method: 'GET',
-      data: {},
+      data: {'leaveopenId':app.globalData.openid},
       success: function (res) {
         var list = res.data.dataList;//获取数据
         if (list == null) {
