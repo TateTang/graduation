@@ -6,23 +6,40 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input myclass">
           <view class="weui-cell__hd">
-            <view class="weui-label">学号<i class="mystar">*</i></view>
+            <view class="weui-label">学号
+              <i class="mystar">*</i>
+            </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入工号" value='{{account}}' name='account' />
+            <input class="weui-input" placeholder="请输入学号" value='{{account}}' name='account' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input myclass">
           <view class="weui-cell__hd">
-            <view class="weui-label">姓名<i class="mystar">*</i></view>
+            <view class="weui-label">姓名
+              <i class="mystar">*</i>
+            </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入姓名" value='{{name}}' name='name'/>
+            <input class="weui-input" placeholder="请输入姓名" value='{{name}}' name='name' />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input myclass">
+          <view class="weui-cell__hd">
+            <view class="weui-label">班级
+              <i class="mystar">*</i>
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker value="{{gradeindex}}" range="{{gradearray}}" bindchange="bindGradeChange" name="gradeobj">
+              <view class="weui-input">{{gradearray[gradeindex]}}</view>
+            </picker>
           </view>
         </view>
       </view>
       <view class="edit">
-        <button type='default' form-type='submit'>保存</button>
+        <button type='default' form-type='submit' wx:if='{{have}}'>保存</button>
       </view>
     </form>
   </view>

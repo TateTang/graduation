@@ -22,7 +22,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input type='number' class="weui-input" name='count' placeholder='请输入班级人数' value='{{gradeCount}}' />
+            <input type='number' class="weui-input" name='counttotal' placeholder='请输入班级人数' value='{{gradeCount}}' />
           </view>
         </view>
       </view>

@@ -1,7 +1,6 @@
 // pages/teacher/teacher-own/info-grade/info-grade.js
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -95,5 +94,4 @@ Page({
         url: 'info-grade-operation/info-grade-operation?gradeId=-1',
       })
   }
- 
 })

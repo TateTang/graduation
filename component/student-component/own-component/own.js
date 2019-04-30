@@ -6,7 +6,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    
   },
 
   /**
@@ -30,64 +30,43 @@ Component({
     wx.setNavigationBarTitle({
       title: '我的'
     });
+    var that = this;
     //设置所属班级
     wx.request({
-      url: app.globalData.localhttp + 'user/getUserByOpenId',
+      url: app.globalData.localhttp + 'student/getStudentByOpenId',
       data: {
         'openId': app.globalData.openid
       },
       method: 'GET',
       success: function(res) {
-        var user = res.dat.data;
-        console.log(user);
+        var user = res.data.data;
+        // console.log(res.data.data);
         if (user != null) {
-          // wx.request({
-          //   url: app.globalData.localhttp + 'grade/getOne',
-          //   data: {
-          //     'gradeId': user.gradeId
-          //   },
-          //   method: 'GET',
-          //   success: function(res) {
-          //     var grade = res.data.data;
-          //     if (grade == undefined) {
-          //       var toastText = '获取班级信息失败' + res.data.msg;
-          //       wx.showToast({
-          //         title: toastText,
-          //         icon: '',
-          //         duration: 2000
-          //       });
-          //     } else {
-          //       that.setData({ //设置变量
-          //         gradename: grade.name,
-          //       });
-          //     }
-          //   }
-          // })
+          wx.request({
+            url: app.globalData.localhttp + 'grade/getOne',
+            data: {
+              'gradeId': user.gradeobj.id
+            },
+            method: 'GET',
+            success: function(res) {
+              var grade = res.data.data;
+              // console.log(grade);
+              if (grade == undefined) {
+                var toastText = '获取班级信息失败' + res.data.msg;
+                wx.showToast({
+                  title: toastText,
+                  icon: '',
+                  duration: 2000
+                });
+              } else {
+                that.setData({ //设置变量
+                  gradename: grade.name,
+                });
+              }
+            }
+          })
         }
       }
     })
   }
-  // wx.request({
-  //   url: app.globalData.localhttp + 'grade/getOne',
-  //   data: {
-  //     'gradeId': options.gradeId
-  //   },
-  //   method: 'GET',
-  //   success: function (res) {
-  //     var grade = res.data.data;
-  //     if (grade == undefined) {
-  //       var toastText = '获取班级信息失败' + res.data.msg;
-  //       wx.showToast({
-  //         title: toastText,
-  //         icon: '',
-  //         duration: 2000
-  //       });
-  //     } else {
-  //       that.setData({ //设置变量
-  //         gradeName: grade.name,
-  //         gradeCount: grade.count
-  //       });
-  //     }
-  //   }
-  // }),
 })

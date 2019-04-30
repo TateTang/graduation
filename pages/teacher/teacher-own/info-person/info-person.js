@@ -1,5 +1,6 @@
 // pages/teacher/teacher-own/info-person/info-person.js
 const app = getApp();
+import WxValidate from '../../../../src/wx-validate/WxValidate.js'
 Page({
 
   /**
@@ -14,13 +15,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.initValidate() //验证规则函数
+    rules: { }
+    messages: { }
       wx.setNavigationBarTitle({
         title: '个人信息',
       })
     //  console.log(app.globalData.openid);
-     var that = this;
+    var that = this;
     wx.request({
-      url: app.globalData.localhttp+'user/getUserByOpenId',
+      url: app.globalData.localhttp +'teacher/getTeacherByOpenId',
       data: {
         'openId': app.globalData.openid
       },
@@ -86,12 +90,18 @@ Page({
 
   },
   formSubmit: function (e) {
+    //校验表单
+    const params = e.detail.value;
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0];
+      this.showModal(error);
+      return false;
+    }
     var that = this;
     var formData = e.detail.value;//获取表单中的数据
-    console.log(JSON.stringify(formData));
-
+    //console.log(JSON.stringify(formData));
     wx.request({
-      url: app.globalData.localhttp+'user/update?openId='+app.globalData.openid,
+      url: app.globalData.localhttp+'teacher/update?openId='+app.globalData.openid,
       data:JSON.stringify(formData),
       method:'PUT',
       header: {
@@ -100,16 +110,36 @@ Page({
       success: function (res) {
         //console.log(res);
         var result = res.data.code;
-        app.operator(result);
-        if (result == '200') { //添加成功返回到班级信息界面
-          setTimeout(function () { //2s后返回
-            wx.redirectTo({
-              url: '../../teacher-index',
-            })
-          }, 1000)
-        }
+        var url = '../../teacher-index';
+        app.navigator(result,url);
       }
     })
-
-  }
+  },
+  //验证函数
+  initValidate() {
+    const rules = {
+      account: {
+        required: true
+      },
+      name: {
+        required: true
+      }
+    }
+    const messages = {
+      account: {
+        required: '请输入教师工号'
+      },
+      name: {
+        required: '请填写教师姓名'
+      }
+    }
+    this.WxValidate = new WxValidate(rules, messages)
+  },
+  //报错 
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false,
+    })
+  },
 })

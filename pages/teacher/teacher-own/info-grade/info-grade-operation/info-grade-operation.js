@@ -11,27 +11,27 @@ Page({
     gradeId: -1,
     gradeName: '',
     gradeCount: '',
-    addUrl: app.globalData.localhttp+'grade/create',
-    updateUrl: app.globalData.localhttp+'grade/update',
+    addUrl: app.globalData.localhttp + 'grade/create',
+    updateUrl: app.globalData.localhttp + 'grade/update',
     form: {
       name: '',
       phone: ''
     },
-    pageType:true
+    pageType: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(options.gradeId == -1){
+    if (options.gradeId == -1) {
       this.setData({
-        pageType:false
+        pageType: false
       })
     }
-    this.initValidate()//验证规则函数
-    rules: { }
-    messages: { }
+    this.initValidate() //验证规则函数
+    rules: {}
+    messages: {}
     wx.setNavigationBarTitle({
       title: '班级信息',
     })
@@ -47,13 +47,14 @@ Page({
     // console.log(options.gradeId);
     //点击编辑按钮时，查询出单个的班级信息，可以修改
     wx.request({
-      url: app.globalData.localhttp+'grade/getOne',
+      url: app.globalData.localhttp + 'grade/getOne',
       data: {
         'gradeId': options.gradeId
       },
       method: 'GET',
       success: function(res) {
         var grade = res.data.data;
+        console.log(grade);
         if (grade == undefined) {
           var toastText = '获取班级信息失败' + res.data.msg;
           wx.showToast({
@@ -64,7 +65,7 @@ Page({
         } else {
           that.setData({ //设置变量
             gradeName: grade.name,
-            gradeCount: grade.count
+            gradeCount: grade.counttotal
           });
         }
       }
@@ -119,7 +120,7 @@ Page({
   onShareAppMessage: function() {
 
   },
-  formSubmit:function(e){
+  formSubmit: function(e) {
     //校验表单
     const params = e.detail.value;
     if (!this.WxValidate.checkForm(params)) {
@@ -128,64 +129,53 @@ Page({
       return false;
     }
     var that = this;
-    var formData = e.detail.value;//获取表单中的数据
-    var idData = { "openid": app.globalData.openid };//json对象
-    //console.log(idData);
-    formData.userobj = idData;
+    var formData = e.detail.value; //获取表单中的数据
+    formData.teacherobj = {
+      "openid": app.globalData.openid
+    }; //json对象
 
-    var url = that.data.addUrl;//添加班级信息的url
-    if(that.data.gradeId!=-1){//点击的是编辑按钮， 判断是修改还是添加
-      formData.id=that.data.gradeId;
-      url = that.data.updateUrl+"?gradeId="+that.data.gradeId; //编辑按钮 修改班级信息
+    var url = that.data.addUrl; //添加班级信息的url
+    var method = 'POST';
+    if (that.data.gradeId != -1) { //点击的是编辑按钮， 判断是修改还是添加
+      formData.id = that.data.gradeId;
+      url = that.data.updateUrl + "?gradeId=" + that.data.gradeId; //编辑按钮 修改班级信息
+      method = 'PUT';
     }
     console.log(JSON.stringify(formData));
     wx.request({
       url: url,
-      data: JSON.stringify(formData),//json转字符串
-      method: 'POST',
+      data: JSON.stringify(formData), //json转字符串
+      method: method,
       header: {
         'Content-Type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         var result = res.data.code;
-        var toastText = '操作成功！';
-        app.operator(result);
-        if (result == '200') {//添加成功返回到班级信息界面
-          setTimeout(function(){//2s后返回
-            wx.redirectTo({
-              url: '../info-grade',
-            })
-          },1000)
-        }
+        var url = '../info-grade';
+        app.navigator(result, url);
       }
     });
   },
-   /**
+  /**
    * 删除班级信息
    */
-  deleteGrade:function(e){
+  deleteGrade: function(e) {
     var that = this;
     wx.showModal({
       title: '提示',
-      content: '确定要删除[' + e.target.dataset.gradename + ']吗？',
-      success: function (res) {
+      content: '确定要删除班级[' + e.target.dataset.gradename + ']吗？',
+      success: function(res) {
         if (res.confirm) {
           wx.request({
-            url: app.globalData.localhttp+'grade/delete/' + e.target.dataset.gradeid,
+            url: app.globalData.localhttp + 'grade/delete/' + e.target.dataset.gradeid,
             data: {
 
             },
             method: 'DELETE',
-            success: function (res) {
+            success: function(res) {
               var result = res.data.code;
-              app.operator(result);
-              if (result == '200') {//删除成功返回到班级信息界面
-                setTimeout(function () {//2s后返回
-                  wx.redirectTo({
-                    url: '../info-grade',
-                  })
-                }, 1500)
-              }
+              var url = '../info-grade';
+              app.navigator(result, url);
             }
           })
         }
@@ -199,7 +189,7 @@ Page({
         required: true,
         maxlength: 15
       },
-      count: {
+      counttotal: {
         required: true
       }
     }
@@ -208,7 +198,7 @@ Page({
         required: '请填写班级名称',
         maxlength: '班级名称不得超过15个字'
       },
-      count: {
+      counttotal: {
         required: '请填写班级人数'
       }
     }

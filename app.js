@@ -51,5 +51,23 @@ App({
       icon: 'success',
       duration: 1500,
     });
+  },
+  navigator:function(result,url){
+    var toastText = '操作成功！';
+    if (result != '200') {
+      toastText = '操作失败!' + res.data.msg;
+    }
+    wx.showToast({
+      title: toastText,
+      icon: 'success',
+      duration: 1500,
+    }); 
+    if (result == '200') { //添加成功返回到班级信息界面
+      setTimeout(function () { //2s后返回
+        wx.redirectTo({
+          url: url,
+        })
+      }, 1000)
+    }
   }
 })

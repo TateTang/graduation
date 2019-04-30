@@ -217,20 +217,23 @@ Page({
     //console.log(idData);
     formData.gradeobj = idData;
     formData.week = that.data.weekarray[e.detail.value.week];//week value值
+    formData.teacherobj = {'openid':app.globalData.openid};
     var startTime = util.formatDate(new Date()) + " " + e.detail.value.startTime;
     var endTime = util.formatDate(new Date()) + " " + e.detail.value.endTime;
     formData.startTime = Date.parse(startTime);//转换
     formData.endTime = Date.parse(endTime);
     console.log(JSON.stringify(formData));//打印表单中的数据
     var url = that.data.addUrl ;//添加课程信息的url
+    var method = 'POST';
     if (that.data.courseId != -1) {//点击的是编辑按钮， 判断是修改还是添加
       formData.id = that.data.courseId;
       url = that.data.updateUrl + "?courseId=" + that.data.courseId; //编辑按钮 修改课程信息
+      method = 'PUT';
     }
     wx.request({
       url: url,
       data: JSON.stringify(formData),//json转字符串
-      method: 'POST',
+      method: method,
       header: {
         'Content-Type': 'application/json'
       },
@@ -275,5 +278,32 @@ Page({
         }
       }
     })
-  }
+  },
+  //验证函数
+  initValidate() {
+    const rules = {
+      account: {
+        required: true
+      },
+      name: {
+        required: true
+      }
+    }
+    const messages = {
+      account: {
+        required: '请输入教师工号'
+      },
+      name: {
+        required: '请填写教师姓名'
+      }
+    }
+    this.WxValidate = new WxValidate(rules, messages)
+  },
+  //报错 
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false,
+    })
+  },
 })
