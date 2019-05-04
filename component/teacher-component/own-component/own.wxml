@@ -62,13 +62,14 @@
     </view>
 
     <view class='share-set'>
-      <navigator url='/pages/teacher/teacher-own/info-share/info-share'>
-        <view class="set" bindtap='share'>
+      <!-- <navigator url='/pages/teacher/teacher-own/info-share/info-share'> -->
+        <button open-type='share' class="shareBtn">ss</button>
+        <view class="set" >
           <text class='iconfont icon-fenxiang'></text>
           <text class="per">分享</text>
           <text class="com">说明文字</text>
         </view>
-      </navigator>
+      <!-- </navigator> -->
     </view>
   </view>
 

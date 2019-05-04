@@ -1,21 +1,18 @@
-// pages/teacher/teacher-own/info-grade/info-grade.js
-const app = getApp();
+// pages/teacher/teacher-own/info-leave/info-leave-operation/info-leave-operation.js
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    //班级信息
-    list:[] 
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     wx.setNavigationBarTitle({
-       title: '班级管理',
-     })
+
   },
 
   /**
@@ -29,22 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      var that = this;
-      wx.request({
-        url: app.globalData.localhttp+'grade/getAll',  
-        method:'GET',
-        data: {'teacheropenId':app.globalData.openid},
-        success: function(res){
-          var list =  res.data.dataList;//获取数据
-          if(list==null){
-            return;
-          }else{
-            that.setData({
-              list : list,//设置变量
-            })
-          }
-        },
-      })
+
   },
 
   /**
@@ -80,13 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  /**
-   * 创建班级
-   */
-  addGrade:function(e){
-      wx.navigateTo({
-        url: 'info-grade-operation/info-grade-operation?gradeId=-1',
-      })
   }
 })

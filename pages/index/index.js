@@ -37,6 +37,9 @@ Page({
                 var userdata = res.data.data;
                 console.log(userdata);
                 if (userdata != null) {//跳转
+                  if(userdata.roleobj==null){
+                    return;
+                  }
                   if (userdata.roleobj.id == 1) {
                     wx.redirectTo({
                       url: '/pages/teacher/teacher-index',

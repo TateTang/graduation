@@ -39,23 +39,16 @@ Page({
         var list = res.data.dataList;//获取数据
         //console.log(list);
         if (list == null) {
-          var toastText = '获取数据失败' + res.data.msg;
-          wx.showToast({
-            title: toastText,
-            icon: '',
-            duration: 2000
-          })
-        } else {
-          for (var i = 0; i < list.length; i++) {
+          return;
+        }
+        for (var i = 0; i < list.length; i++) {
             gradeNameArr.push(list[i].name);
             gradeIdArr.push(list[i].id);
           }
           that.setData({
             gradearray: gradeNameArr,//设置变量
             gradeId: gradeIdArr,
-
           })
-        }
       },
     })
     // if(that.data.name==''){//不存在的时候，第一次进入 不去查询表
@@ -154,9 +147,9 @@ Page({
       },
       success: function (res) {
         //console.log(res);
-        var result = res.data.code;
+        // var result = res.data.code;
         var url = '../../student-index';
-        app.navigator(result, url);
+        app.navigator(res, url);
       }
     })
   },
@@ -188,7 +181,7 @@ Page({
     })
   },
   bindGradeChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    //console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       gradeindex: e.detail.value
     })

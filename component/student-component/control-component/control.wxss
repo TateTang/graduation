@@ -1,1 +1,10 @@
 /* pages/student/control/control.wxss */
+@import "../../../src/wxss/weui.wxss";
+
+.weui-form-preview {
+  margin-bottom: 10px;
+}
+
+.page__bd {
+  font-size: 16px;
+}

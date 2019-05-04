@@ -30,13 +30,8 @@ Page({
         var list = res.data.dataList;//获取数据
         //console.log(list);
         if (list == null) {
-          var toastText = '获取数据失败' + res.data.msg;
-          wx.showToast({
-            title: toastText,
-            icon: '',
-            duration: 2000
-          })
-        } else {
+          return;
+        } 
           for (var i = 0; i < list.length; i++) {
             gradeNameArr.push(list[i].name);
             gradeIdArr.push(list[i].id);
@@ -45,7 +40,7 @@ Page({
             gradearray: gradeNameArr,//设置变量
             gradeId: gradeIdArr
           })
-        }
+        
       },
     })
   },
@@ -119,16 +114,8 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        var result = res.data.code;
-        var toastText = '操作成功！';
-        app.operator(result);
-        if (result == '200') {//添加成功返回到班级信息界面
-          setTimeout(function () {//2s后返回
-            wx.redirectTo({
-              url: '../info-grade',
-            })
-          }, 1000)
-        }
+        var url = '../info-grade';
+        app.navigator(res,url);
       }
     });
   }

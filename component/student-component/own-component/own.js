@@ -6,7 +6,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    
+
   },
 
   /**
@@ -20,7 +20,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    
   },
   /**
    * 在组件实例进入页面节点树时执行
@@ -51,22 +51,19 @@ Component({
             success: function(res) {
               var grade = res.data.data;
               // console.log(grade);
-              if (grade == undefined) {
-                var toastText = '获取班级信息失败' + res.data.msg;
-                wx.showToast({
-                  title: toastText,
-                  icon: '',
-                  duration: 2000
-                });
-              } else {
-                that.setData({ //设置变量
-                  gradename: grade.name,
-                });
+              if (grade == null) {
+                return;
               }
+              that.setData({ //设置变量
+                gradename: grade.name,
+              });
+
             }
           })
         }
       }
     })
+
+    
   }
 })

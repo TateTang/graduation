@@ -22,38 +22,38 @@
   <view class='menu'>
     <!--菜单栏信息设置-->
     <view class='info-set'>
-       <!-- <view class='title'>信息</view>  -->
+      <!-- <view class='title'>信息</view>  -->
 
       <navigator url='/pages/student/student-own/info-person/info-person'>
         <view class='set'>
           <text class='iconfont icon-gerenxinxi'></text>
-          <text class='per'>个人信息</text>
-          <text class='com'>说明文字</text>
+          <text class='per'>我的信息</text>
+          <text class='com'>个人信息</text>
         </view>
       </navigator>
 
       <navigator url='/pages/student/student-own/info-leave/info-leave'>
         <view class='set'>
           <text class='iconfont icon-qingjia1'></text>
-          <text class='per'>请假管理</text>
-          <text class='com'>说明文字</text>
+          <text class='per'>我的请假</text>
+          <text class='com'>请假信息</text>
         </view>
       </navigator>
 
-      <navigator url='/pages/student/student-own/info-grade/info-grade'>
+      <!-- <navigator url='/pages/student/student-own/info-grade/info-grade'>
         <view class='set'>
           <text class='iconfont icon-banjiguanli'></text>
           <text class='per'>加入班级</text>
           <text class='com'>说明文字</text>
         </view>
-      </navigator>
+      </navigator> -->
 
       <navigator url='/pages/student/student-own/info-course/info-course'>
         <view class='set'>
           <text class='iconfont icon-kechengguanli'></text>
 
-          <text class='per'>课程管理</text>
-          <text class='com'>说明文字</text>
+          <text class='per'>我的签到</text>
+          <text class='com'>签到信息</text>
         </view>
       </navigator>
 
@@ -67,21 +67,19 @@
         <view class="set">
           <text class='iconfont icon-bangzhuguanyuwomen'></text>
           <text class="per">关于我们</text>
-          <text class="com">说明文字</text>
+          <text class="com">关于我们</text>
         </view>
       </navigator>
     </view>
     <view class='share-set'>
-      <navigator url='/pages/student/student-own/info-share/info-share'>
-        <view class="set">
-          <text class='iconfont icon-fenxiang'></text>
-          <text class="per">分享</text>
-          <text class="com">说明文字</text>
-        </view>
-      </navigator>
+      <!-- <navigator url='/pages/student/student-own/info-share/info-share'> -->
+      <button open-type='share' class="shareBtn">ss</button>
+      <view class="set">
+        <text class='iconfont icon-fenxiang'></text>
+        <text class="per">分享</text>
+        <text class="com">分享</text>
+      </view>
+      <!-- </navigator> -->
     </view>
-
   </view>
-
-
 </view>

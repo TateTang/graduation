@@ -31,6 +31,9 @@ Page({
       method:'GET',
       success:function(res){
         var result = res.data.data;
+        if(result==null){
+          return;
+        }
         console.log(res);
         that.setData({
           name: result.name,
@@ -99,7 +102,9 @@ Page({
     }
     var that = this;
     var formData = e.detail.value;//获取表单中的数据
-    //console.log(JSON.stringify(formData));
+    formData.openid = app.globalData.openid;
+    formData.roleobj = { "id": 1 };
+    console.log(JSON.stringify(formData));
     wx.request({
       url: app.globalData.localhttp+'teacher/update?openId='+app.globalData.openid,
       data:JSON.stringify(formData),
@@ -108,10 +113,9 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        //console.log(res);
-        var result = res.data.code;
+        console.log(res);
         var url = '../../teacher-index';
-        app.navigator(result,url);
+        app.navigator(res,url);
       }
     })
   },

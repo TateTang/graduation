@@ -41,9 +41,10 @@ App({
     // localhttp: 'https://www.tfleof.top:8443/',
     serverhttp:''
   },
-  operator: function(result){//操作函数 写在全局中 都可以调用
+  operator: function(res){//操作函数 写在全局中 都可以调用
     var toastText = '操作成功！';
-    if (result != '200') {
+    var code = res.data.code;
+    if (code != '200') {
       toastText = '操作失败!' + res.data.msg;
     }
     wx.showToast({
@@ -52,9 +53,10 @@ App({
       duration: 1500,
     });
   },
-  navigator:function(result,url){
+  navigator:function(res,url){
     var toastText = '操作成功！';
-    if (result != '200') {
+    var code = res.data.code;
+    if (code != '200') {
       toastText = '操作失败!' + res.data.msg;
     }
     wx.showToast({
@@ -62,7 +64,7 @@ App({
       icon: 'success',
       duration: 1500,
     }); 
-    if (result == '200') { //添加成功返回到班级信息界面
+    if (code == '200') { //添加成功返回到班级信息界面
       setTimeout(function () { //2s后返回
         wx.redirectTo({
           url: url,

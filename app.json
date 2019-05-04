@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/comein/comein",
     "pages/logs/logs",
@@ -9,7 +8,6 @@
     "pages/teacher/teacher-own/info-about/info-about",
     "pages/teacher/teacher-own/info-course/info-course",
     "pages/teacher/teacher-own/info-grade/info-grade",
-    "pages/teacher/teacher-own/info-leave/info-leave",
     "pages/teacher/teacher-own/info-person/info-person",
     "pages/teacher/teacher-own/info-share/info-share",
     "pages/student/student-own/info-about/info-about",
@@ -19,7 +17,9 @@
     "pages/student/student-own/info-person/info-person",
     "pages/student/student-own/info-share/info-share",
     "pages/teacher/teacher-own/info-grade/info-grade-operation/info-grade-operation",
-    "pages/teacher/teacher-own/info-course/info-course-operation/info-course-operation"
+    "pages/teacher/teacher-own/info-course/info-course-operation/info-course-operation",
+    "pages/teacher/teacher-own/info-leave/info-leave-operation/info-leave-operation",
+    "pages/teacher/teacher-own/info-leave/info-leave"
   ],
   "window": {
     "enablePullDownRefresh": true,

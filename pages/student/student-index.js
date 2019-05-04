@@ -10,19 +10,19 @@ Page({
     nowIndex: 2,
     tabBar: [
       {
-        "iconClass": "iconfont icon-qiandao",
+        "iconClass": "iconfont icon-kaoqinqiandao",
         "text": "签到",
         "tapFunction": "toFirst",
         "active": "active"
       },
       {
-        "iconClass": "iconfont icon-gongzuotai",
-        "text": "控制台",
+        "iconClass": "iconfont icon-qingjia",
+        "text": "请假",
         "tapFunction": "toSecond",
         "active": ""
       },
       {
-        "iconClass": "iconfont icon-ziyuan",
+        "iconClass": "iconfont icon-weibiaoti2fuzhi12",
         "text": "我的",
         "tapFunction": "toThird",
         "active": ""

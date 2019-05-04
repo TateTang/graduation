@@ -1,95 +1,125 @@
 /* pages/student/own/own.wxss */
+
 /*
  icon图标导入
 */
 @import "../../../src/wxss/guanli.wxss";
+
 page {
   display: block;
   min-height: 100%;
-  background-color: #EDEDED;
+  background-color: #ededed;
 }
-.mine{
-  margin:0;
+
+.mine {
+  margin: 0;
 }
-.mine .header{
+
+.mine .header {
   text-align: center;
-  padding-top:12px;
-  padding-bottom:12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   padding-left: 12px;
   background-color: #fff;
   display: flex;
-  border-bottom:1px solid #f8f8f8;
+  border-bottom: 1px solid #f8f8f8;
 }
-.mine .header .userinfo-avatar{
-  width:60px;
+
+.mine .header .userinfo-avatar {
+  width: 60px;
   height: 60px;
   overflow: hidden;
-  margin:0 auto;
-  border-radius:30px;
+  margin: 0 auto;
+  border-radius: 30px;
 }
-.mine .header .userinfo-avatar image{
-  width:60px;
+
+.mine .header .userinfo-avatar image {
+  width: 60px;
   height: 60px;
 }
-.mine .header .userinfo-avatar open-data{
-  width:60px;
+
+.mine .header .userinfo-avatar open-data {
+  width: 60px;
   height: 60px;
 }
-.mine .header .userinfo-nickname{
+
+.mine .header .userinfo-nickname {
   width: 70%;
-  padding-top:10px;
-  margin:0 auto;
-  font-size:18px;
+  padding-top: 10px;
+  margin: 0 auto;
+  font-size: 18px;
   text-align: left;
 }
-.mine .header .grade{
-  margin-top: 4px;
+
+.mine .header .grade {
+  margin-top: 2px;
   position: relative;
   text-align: left;
   font-size: 15px;
   color: #636363;
 }
-.mine .header .userinfo-nickname button{
-  border-radius:20px;
+
+.mine .header .userinfo-nickname button {
+  border-radius: 20px;
   font-size: 14px;
   line-height: 3;
 }
-.mine .meun{
+
+.mine .meun {
   margin-bottom: 100px;
 }
-.mine .meun .title{
-  font-size:14px;
-  color:#808080;
-  margin-top:.77em;
-  margin-bottom:.3em;
-  padding:0 15px;
+
+.mine .meun .title {
+  font-size: 14px;
+  color: #808080;
+  margin-top: 0.77em;
+  margin-bottom: 0.3em;
+  padding: 0 15px;
 }
-.mine .menu .set{
-  padding:10px 15px;
+
+.mine .menu .set {
+  padding: 12px 15px;
   background-color: #fff;
-  font-size:20px;
-  line-height: 2.00;
-  border-bottom:1px solid #f8f8f8;
+  font-size: 16px;
+  line-height: 1.47;
+  border-bottom: 1px solid #f8f8f8;
 }
-.mine .menu .set .com{
-  padding-right:13px;
-  color:#808080;
-  float:right;
+
+.mine .menu .set .com {
+  padding-right: 13px;
+  color: #808080;
+  float: right;
   position: relative;
 }
-.mine .menu .set .com::after{
-  content:"";
+
+.mine .menu .set .com::after {
+  content: "";
   display: inline-block;
-  width:6px;
+  width: 6px;
   height: 6px;
-  border-top:2px solid #C8C8CD;
-  border-right:2px solid #C8C8CD;
+  border-top: 2px solid #c8c8cd;
+  border-right: 2px solid #c8c8cd;
   transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
   position: absolute;
-  top:50%;
-  margin-top:-4px;
-  right:2px;
+  top: 50%;
+  margin-top: -4px;
+  right: 2px;
 }
-.menu .info-set,.about-set,.share-set{
+
+.menu .info-set, .about-set, .share-set {
   margin-top: 8px;
+}
+
+.share-set {
+  position: relative;
+}
+
+.shareBtn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  z-index: 2;
+  opacity: 0;
 }

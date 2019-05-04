@@ -1,5 +1,6 @@
 // pages/student/sudent-own/info-leave/info-leave.js
 const app = getApp();
+import WxValidate from '../../../../src/wx-validate/WxValidate.js'
 var util = require('../../../../utils/util.js');
 Page({
 
@@ -8,37 +9,43 @@ Page({
    */
   data: {
     date: util.formatDate(new Date()),
-    coursearray: [],//课程数组
-    courseId: [],//课程id
+    coursearray: [], //课程选择器
+    courseId: [], 
     courseindex: 0,
 
-    teacherarray: ['ss', 'xx', 'mm'],//老师数组
+    teacherOpenId: [],//教师选择器
+    teacherarray: [], 
+    teacherId: [],
     teacherindex: 0,
 
-    username:''
+    username: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    this.initValidate() //验证规则函数
+    rules: { }
+    messages: { }
+
     wx.setNavigationBarTitle({
       title: '请假信息',
     })
-    var that = this; 
+    var that = this;
     wx.request({
-      url: app.globalData.localhttp + 'user/getUserByOpenId',
+      url: app.globalData.localhttp + 'student/getStudentByOpenId',
       data: {
         'openId': app.globalData.openid
       },
       method: 'GET',
-      success: function (res) {
+      success: function(res) {
         var userdata = res.data.data;
         //console.log(userdata);
         that.setData({
-          username:userdata.name
+          username: userdata.name
         })
-        }
+      }
     });
 
     var courseNameArr = [];
@@ -48,26 +55,47 @@ Page({
       url: app.globalData.localhttp + '/course/getName',
       method: 'GET',
       data: {},
-      success: function (res) {
-        var list = res.data.dataList;//获取数据
+      success: function(res) {
+        var list = res.data.dataList; //获取数据
         console.log(list);
         if (list == null) {
-          var toastText = '获取数据失败' + res.data.msg;
-          wx.showToast({
-            title: toastText,
-            icon: '',
-            duration: 2000
-          })
-        } else {
-          for (var i = 0; i < list.length; i++) {
-            courseNameArr.push(list[i].name);
-            courseIdArr.push(list[i].id);
-          }
-          that.setData({
-            coursearray: courseNameArr,//设置变量
-            courseId: courseIdArr
-          })
+          return;
         }
+        for (var i = 0; i < list.length; i++) {
+          courseNameArr.push(list[i].name);
+          courseIdArr.push(list[i].id);
+        }
+        that.setData({
+          coursearray: courseNameArr, //设置变量
+          courseId: courseIdArr
+        })
+
+      },
+    })
+    var teacherNameArr = [];
+    var teacherIdArr = [];
+    var teacherOpenIdArr = []; 
+    //获取老师姓名信息
+    wx.request({
+      url: app.globalData.localhttp + '/teacher/getAll',
+      method: 'GET',
+      data: {},
+      success: function(res) {
+        var list = res.data.dataList; //获取数据
+        console.log(list);
+        if (list == null) {
+          return;
+        }
+        for (var i = 0; i < list.length; i++) {
+          teacherNameArr.push(list[i].name);
+          teacherIdArr.push(list[i].id);
+          teacherOpenIdArr.push(list[i].openid);
+        }
+        that.setData({
+          teacherarray: teacherNameArr, //设置变量
+          teacherId: teacherIdArr,
+          teacherOpenId: teacherOpenIdArr
+        })
       },
     })
   },
@@ -75,78 +103,89 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  bindDateChange: function (e) {
+  bindDateChange: function(e) {
     this.setData({
       date: e.detail.value
     })
   },
-  bindTeacherChange: function (e) {
+  bindTeacherChange: function(e) {
     this.setData({
       teacherindex: e.detail.value
     })
   },
-  bindCourseChange: function (e) {
+  bindCourseChange: function(e) {
     this.setData({
       courseindex: e.detail.value
     })
   },
-  formSubmit: function (e) {
+  formSubmit: function(e) {
+    //校验表单
+    const params = e.detail.value;
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0];
+      this.showModal(error);
+      return false;
+    }
     var that = this;
-    var formData = e.detail.value;//获取表单中的数据 //formData['roleobj.id'] = that.data.moldvalue;
+    var formData = e.detail.value; //获取表单中的数据 //formData['roleobj.id'] = that.data.moldvalue;
     var leavetime = e.detail.value.leavetime + " 08:00:00";
     //var idData = { "id": that.data.gradeId[e.detail.value.gradeobj] };//json对象
-    var courseobj = { 'id': that.data.courseId[that.data.courseindex]};
-    var userobj = { 'openid': app.globalData.openid };
-    formData.courseobj = courseobj;
-    formData.leavetime = Date.parse(leavetime);//转换
-    formData.userobj = userobj;
-    formData.teachername = that.data.teacherarray[that.data.teacherindex];
-    console.log(JSON.stringify(formData));//打印表单中的数据
+    formData.leavetime = Date.parse(leavetime); //转换
+    formData.courseobj = {
+      'id': that.data.courseId[that.data.courseindex]
+    };;
+    formData.studentobj = {
+      'openid': app.globalData.openid
+    };
+    formData.teacherobj = {
+      'openid': that.data.teacherOpenId[that.data.teacherindex]
+    };
+    console.log(JSON.stringify(formData)); //打印表单中的数据
     var url = app.globalData.localhttp + 'leave/create';
     wx.request({
       url: url,
@@ -156,16 +195,31 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        var result = res.data.code;
-        app.operator(result);
-        if (result == '200') {//添加成功返回到班级信息界面
-          setTimeout(function () {//2s后返回
-            wx.redirectTo({
-              url: '../../student-index', 
-            })
-          }, 1000)
-        }
+        // var result = res.data.code;
+        var url = '../../student-index';
+        app.navigator(res, url);
       }
     });
-  }
+  },
+  //验证函数
+  initValidate() {
+    const rules = {
+      leavecontent: {
+        required: true
+      },
+    }
+    const messages = {
+      leavecontent: {
+        required: '请填写请假原因'
+      },
+    }
+    this.WxValidate = new WxValidate(rules, messages)
+  },
+  //报错 
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false,
+    })
+  },
 })

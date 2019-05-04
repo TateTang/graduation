@@ -150,9 +150,9 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function(res) {
-        var result = res.data.code;
+        // var result = res.data.code;
         var url = '../info-grade';
-        app.navigator(result, url);
+        app.navigator(res, url);
       }
     });
   },
@@ -173,9 +173,9 @@ Page({
             },
             method: 'DELETE',
             success: function(res) {
-              var result = res.data.code;
+              // var result = res.data.code;
               var url = '../info-grade';
-              app.navigator(result, url);
+              app.navigator(res, url);
             }
           })
         }
