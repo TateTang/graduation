@@ -1,4 +1,4 @@
-// pages/student/sudent-own/info-leave/info-leave.js
+// pages/student/sudent-own/info-arrivetime/info-arrivetime.js
 const app = getApp();
 var util = require('../../../../utils/util.js');
 Page({
@@ -8,24 +8,28 @@ Page({
    */
   data: {
     list: [],
-    leavetime: [],
-    leavestatus: [],
+    arrivetime: [],
+    status: [],
+    actuallystarttime:[],
+    actuallyendtime:[],
     index: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.setNavigationBarTitle({ //设置导航栏标题
-      title: '请假信息'
+      title: '签到信息'
     })
-    var leavetime = [];
-    var leavestatus = [];
+    var arrivetime = [];
+    var status = [];
+    var actuallystarttime = [];
+    var actuallyendtime = [];
     var that = this;
     //获取请假信息信息
     wx.request({
-      url: app.globalData.localhttp + '/leave/getAll',
+      url: app.globalData.localhttp + '/arrive/getAll',
       method: 'GET',
       data: {
         'stuopenId': app.globalData.openid,
@@ -37,20 +41,25 @@ Page({
           return;
         }
         for (var i = 0; i < list.length; i++) {
-          leavetime.push(util.formatTimeThree(Date.parse(list[i].leavetime)));
-          if (list[i].status == 1) {
-            leavestatus.push("已通过");
+          console.log(util.formatTimeFive(Date.parse(list[i].arrivetime)));
+          arrivetime.push(util.formatTimeFive(Date.parse(list[i].arrivetime)));
+          actuallystarttime.push(util.formatTimeFive(Date.parse(list[i].courseobj.startTime)))
+          actuallyendtime.push(util.formatTimeFive(Date.parse(list[i].courseobj.endTime)))
+          if (list[i].status == 0) {
+            status.push("迟到");
+          } else if (list[i].status == 1) {
+            status.push("签到");
           } else if (list[i].status == 2) {
-            leavestatus.push("未通过");
-          } else if (list[i].status == 0) {
-            leavestatus.push("已提交");
+            status.push("旷课");
           }
         }
         that.setData({
           list: list,
-          leavetime: leavetime,
+          arrivetime: arrivetime,
+          actuallystarttime: actuallystarttime,
+          actuallyendtime: actuallyendtime,
           index: list.length,
-          leavestatus: leavestatus,
+          status: status,
         })
       },
     })
@@ -59,49 +68,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

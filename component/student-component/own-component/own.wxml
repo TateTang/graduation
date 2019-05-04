@@ -48,7 +48,7 @@
         </view>
       </navigator> -->
 
-      <navigator url='/pages/student/student-own/info-course/info-course'>
+      <navigator url='/pages/student/student-own/info-qiandao/info-qiandao'>
         <view class='set'>
           <text class='iconfont icon-kechengguanli'></text>
 

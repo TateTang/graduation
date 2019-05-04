@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/student/student-own/info-qiandao/info-qiandao",
     "pages/index/index",
     "pages/comein/comein",
     "pages/logs/logs",
@@ -11,7 +12,7 @@
     "pages/teacher/teacher-own/info-person/info-person",
     "pages/teacher/teacher-own/info-share/info-share",
     "pages/student/student-own/info-about/info-about",
-    "pages/student/student-own/info-course/info-course",
+    
     "pages/student/student-own/info-grade/info-grade",
     "pages/student/student-own/info-leave/info-leave",
     "pages/student/student-own/info-person/info-person",

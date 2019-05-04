@@ -15,9 +15,9 @@
 .edit{
   position: absolute;
   bottom:0;
-  margin:0 50px;
+  margin:0 60px;
   text-align: center;
-  width: calc(100% - 100px)
+  width: calc(100% - 120px)
 }
 .edit button{
   margin-bottom: 8px;

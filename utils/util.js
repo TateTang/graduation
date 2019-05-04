@@ -59,6 +59,11 @@ function formatTimeThree(inputTime) {
   second = second < 10 ? ('0' + second) : second;
   return y + '-' +m +'-'+d ;
 };
+/*
+ * 时间戳转换为时分秒 格式  formatDate()
+ * 
+ * inputTime   时间戳
+ */
 function formatTimeFour(inputTime) {
   var date = new Date(inputTime);
   var y = date.getFullYear();
@@ -75,7 +80,7 @@ function formatTimeFour(inputTime) {
   return h + ':' + minute + ':' + second;
 };
 /*
- * 时间戳转换为年月日 格式  formatDate()
+ * 时间戳转换为年月日  时分秒 格式  formatDate()
  * 
  * inputTime   时间戳
  */
