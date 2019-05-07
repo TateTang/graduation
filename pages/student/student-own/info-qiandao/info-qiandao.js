@@ -36,12 +36,12 @@ Page({
       },
       success: function (res) {
         var list = res.data.dataList; //获取数据
-        console.log(list);
+        // console.log(list);
         if (list == null) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
-          console.log(util.formatTimeFive(Date.parse(list[i].arrivetime)));
+          // console.log(util.formatTimeFive(Date.parse(list[i].arrivetime)));
           arrivetime.push(util.formatTimeFive(Date.parse(list[i].arrivetime)));
           actuallystarttime.push(util.formatTimeFive(Date.parse(list[i].courseobj.startTime)))
           actuallyendtime.push(util.formatTimeFive(Date.parse(list[i].courseobj.endTime)))

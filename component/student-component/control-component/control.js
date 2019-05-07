@@ -139,7 +139,7 @@ Component({
       data: {},
       success: function (res) {
         var list = res.data.dataList; //获取数据
-        console.log(list);
+        // console.log(list);
         if (list == null) {
           return;
         }
@@ -164,7 +164,7 @@ Component({
       data: {},
       success: function (res) {
         var list = res.data.dataList; //获取数据
-        console.log(list);
+        // console.log(list);
         if (list == null) {
           return;
         }

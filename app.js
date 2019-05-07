@@ -39,7 +39,7 @@ App({
     openid: '',
     localhttp:'http://localhost:8080/',
     // localhttp: 'https://www.tfleof.top:8443/',
-    serverhttp:''
+    studnetgradeid:'',
   },
   operator: function(res){//操作函数 写在全局中 都可以调用
     var toastText = '操作成功！';

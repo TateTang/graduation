@@ -1,5 +1,4 @@
 /*
-
  tabbar 图标wxss样式
 */
 .tab-bar{
@@ -15,19 +14,21 @@
   float:left;
   width: 33%;
   text-align: center;
-  padding-top:5px;
+  padding-top:1px;
 }
 
 .tab-bar .tab-item .icons{
-  font-size:20px;
+  font-size:22px;
   color:#808080;
   font-weight:800;
 }
 .tab-bar .tab-item .icon-text{
   font-size:10px;
   display: block;
-  line-height:2.0;
+  /* line-height:1.80; */
   color:#808080;
+  margin-top:-5px;
+  margin-bottom:2px;
 }
 .tab-bar .active .icons{
   color:#1296DB;

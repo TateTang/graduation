@@ -16,11 +16,11 @@
                     <view class="weui-form-preview__value">{{item.courseobj.teacherobj.name}}</view>
                 </view>
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">实际开始时间</view>
+                    <view class="weui-form-preview__label">课程开始时间</view>
                     <view class="weui-form-preview__value">{{actuallystarttime[index]}}</view>
                 </view>
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">实际结束时间</view>
+                    <view class="weui-form-preview__label">课程结束时间</view>
                     <view class="weui-form-preview__value">{{actuallyendtime[index]}}</view>
                 </view>
                 <view class="weui-form-preview__item">

@@ -1,1 +1,92 @@
 /* pages/student/qiandao/qiandao.wxss */
+@import "../../../src/wxss/weui.wxss";
+.myclass {
+  line-height: 1.8;
+  font-size: 16px;
+}
+.xiangqing .weui-cell__bd{
+  font-size: 15px;
+  color: #999;
+}
+.leavecontent {
+  margin-left: 5px;
+}
+.mini-btn {
+  margin-right: 5px;
+  background-color: #EDEDED;
+}
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+
+.modal-dialog {
+  width: 540rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  margin: -180rpx 105rpx;
+  border-radius: 36rpx;
+}
+
+.modal-title {
+  padding-top: 10rpx;
+  font-size: 36rpx;
+  color: #030303;
+  text-align: center;
+}
+
+.modal-content {
+  padding: 10rpx 32rpx;
+}
+
+.modal-input {
+  display: flex;
+  background: #fff;
+  border: 2rpx solid #ddd;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+input-holder {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 34rpx;
+  line-height: 86rpx;
+}
+
+.btn-cancel {
+  width: 50%;
+  color: #EDEDED;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+.btn-confirm {
+  width: 50%;
+  color: #EDEDED;
+  text-align: center;
+}
+.qiandao-btn{
+  text-align: right;
+}
+.weui-cells__title{
+  font-size: 16px;
+}

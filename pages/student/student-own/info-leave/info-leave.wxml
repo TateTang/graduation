@@ -16,6 +16,10 @@
                     <view class="weui-form-preview__value">{{leavetime[index]}}</view>
                 </view>
                 <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">授课教师</view>
+                    <view class="weui-form-preview__value">{{list[index].teacherobj.name}}</view>
+                </view>
+                <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">请假课程</view>
                     <view class="weui-form-preview__value">{{list[index].courseobj.name}}</view>
                 </view>

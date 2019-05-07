@@ -26,7 +26,7 @@ Component({
    * 在组件实例进入页面节点树时执行
    */
   created() {
-    console.log(app.globalData.userInfo);
+    // console.log(app.globalData.userInfo);
     wx.setNavigationBarTitle({
       title: '我的'
     });
@@ -40,7 +40,7 @@ Component({
       method: 'GET',
       success: function(res) {
         var user = res.data.data;
-        // console.log(res.data.data);
+         //console.log(res.data.data);
         if (user != null) {
           wx.request({
             url: app.globalData.localhttp + 'grade/getOne',
@@ -50,6 +50,8 @@ Component({
             method: 'GET',
             success: function(res) {
               var grade = res.data.data;
+              app.globalData.studnetgradeid = grade.id;
+              // console.log(app.globalData.studnetgradeid)
               // console.log(grade);
               if (grade == null) {
                 return;
