@@ -79,8 +79,8 @@ Component({
         },
         success: function (res) {
           // var result = res.data.code;
-          var url = '../../student-index';
-          app.navigator(res, url);
+          // var url = '../../student-index';
+          // app.navigator(res, url);
         }
       });
     },

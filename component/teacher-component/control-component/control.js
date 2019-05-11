@@ -29,7 +29,7 @@ Component({
   },
   created() {
     wx.setNavigationBarTitle({ //设置导航栏标题
-      title: '控制台'
+      title: '请假'
     })
     var leavetime = [];
     var leavestatus = [];

@@ -24,7 +24,7 @@ Page({
     messages: { }
 
     wx.setNavigationBarTitle({
-      title: '个人信息',
+      title: '我的信息',
     })
     //  console.log(app.globalData.openid);
     var that = this;

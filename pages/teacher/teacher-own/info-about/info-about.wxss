@@ -25,6 +25,3 @@ image{
 .weui-footer_fixed-bottom{
     margin-bottom: 0;
 }
-.weui-cell{
-line-height: 2.00;
-}

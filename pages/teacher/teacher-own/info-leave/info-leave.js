@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function(options) {
     wx.setNavigationBarTitle({ //设置导航栏标题
-      title: '请假信息'
+      title: '请假审批'
     })
     var leavetime = [];
     var leavestatus = [];

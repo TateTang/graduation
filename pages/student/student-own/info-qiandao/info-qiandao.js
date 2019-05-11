@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({ //设置导航栏标题
-      title: '签到信息'
+      title: '我的签到'
     })
     var arrivetime = [];
     var status = [];

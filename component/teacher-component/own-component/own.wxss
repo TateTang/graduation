@@ -42,13 +42,6 @@ page {
   font-size:18px;
   text-align: left;
 }
-.mine .header .grade{
-  margin-top: 2px;
-  position: relative;
-  text-align: left;
-  font-size: 15px;
-  color: #636363;
-}
 .mine .header .userinfo-nickname button{
   border-radius:20px;
   font-size: 14px;

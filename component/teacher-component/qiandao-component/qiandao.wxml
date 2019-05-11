@@ -3,15 +3,23 @@
   <view class="page__bd">
     <view class="weui-cells__title">学生签到信息</view>
     <block wx:for="{{list}}" wx:key="{{index}}">
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
+      <view class="weui-cells weui-cells_after-title myclass">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="showBox" data-index="{{index}}">
           <view class="weui-cell__bd">
-            <view>{{list[index].courseobj.name}}</view>
-            <view>{{list[index].studentobj.name}} {{status[index]}}</view>
+            <view>签到人：{{list[index].studentobj.gradeobj.name+'-'+list[index].studentobj.name}}</view>
           </view>
-          <view class="weui-cell__ft">
-            <view>开始时间：{{satarttime[index]}}</view>
-            <view>结束时间：{{endtime[index]}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">
+            <view>签到状态：{{status[index]}}</view>
+          </view>
+        </view>
+        <view wx:if="{{showIndex==index?true:false}}" class="{{showIndex==index?'yesBox':noBox}}">
+          <view class="weui-cell weui-cell_access ">
+            <view class='weui-cell__bd'>
+              <view>签到课程：{{list[index].courseobj.name}}</view>
+              <view>开始时间：{{satarttime[index]}}</view>
+              <view>结束时间：{{endtime[index]}}</view>
+              <view>签到时间：{{arrivetime[index]}}</view>
+            </view>
           </view>
         </view>
       </view>

@@ -108,7 +108,7 @@ Component({
       success: function(res) {
         var list = res.data.dataList; //获取数据
         var alength = 0;
-        console.log(list);
+        // console.log(list);
         if (list.length == 0) {
           return;
         }
@@ -130,7 +130,7 @@ Component({
                 return;
               }
               alength = arrivedata.length;
-              console.log(alength);//如果已经签到了就不再显示出来 已经签到的课程有几个
+              // console.log(alength);//如果已经签到了就不再显示出来 已经签到的课程有几个
             }
           })
           // console.log(alength);

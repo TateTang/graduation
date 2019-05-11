@@ -1,7 +1,7 @@
 <!--pages/teacher/control/control.wxml-->
 <view class="page">
     <view class="page__bd">
-        <view class="weui-cells__title">请假单信息</view>
+        <view class="weui-cells__title">学生请假单信息</view>
         <block wx:for="{{list}}" wx:key="{{index}}">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">

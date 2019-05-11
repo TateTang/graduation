@@ -17,15 +17,28 @@ Component({
     list: [],
     satarttime: [],
     endtime: [],
+    arrivetime:[],
     index: 0,
-    status: []
+    status: [],
+    showIndex:null,
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
+    showBox: function (e) {
+      // console.log(e)
+      if (this.data.showIndex == e.currentTarget.dataset.index) {
+        this.setData({
+          showIndex: null
+        })
+      } else {
+        this.setData({
+          showIndex: e.currentTarget.dataset.index
+        })
+      }
+    },
   },
   created() {
     wx.setNavigationBarTitle({//设置导航栏标题
@@ -33,6 +46,7 @@ Component({
     })
     var satarttime = [];
     var endtime = [];
+    var arrivetime=[];
     var status = [];
     var that = this;
     //获取全部签到信息
@@ -52,25 +66,34 @@ Component({
           var stime = util.formatTimeFive(Date.parse(list[i].courseobj.startTime));
           var etime = util.formatTimeFive(Date.parse(list[i].courseobj.endTime));
           var atime = util.formatTimeFive(Date.parse(list[i].arrivetime));
-          satarttime.push(util.formatTimeFour(Date.parse(list[i].courseobj.startTime)));
-          endtime.push(util.formatTimeFour(Date.parse(list[i].courseobj.endTime)));
+          satarttime.push(stime);
+          endtime.push(etime);
+          arrivetime.push(atime)
           // console.log(atime);
           // console.log(stime);
-          if (atime>stime && atime<etime){
+          // if (atime>stime && atime<etime){
+          //   status.push("迟到");
+          //   console.log("迟到");
+          // } else if (atime == null || atime > etime) {
+          //   status.push("旷课");
+          //   console.log("旷课");
+          // }else{
+          //   status.push("已签到");
+          //   console.log("签到");
+          // }
+          if (list[i].status == 0 ) {
             status.push("迟到");
-            console.log("迟到");
-          } else if (atime == null || atime > etime) {
-            status.push("旷课");
-            console.log("旷课");
-          }else{
+          } else if (list[i].status == 1) {
             status.push("已签到");
-            console.log("签到");
+          }else {
+            status.push("旷课");
           }
         }
         that.setData({
           list: list,
           satarttime: satarttime,
           endtime: endtime,
+          arrivetime: arrivetime,
           index: list.length,
           status: status,
         })
