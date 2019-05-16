@@ -9,7 +9,7 @@
             <view class="weui-label">工号<i class="mystar">*</i></view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入工号" value='{{account}}' name='account' />
+            <input class="weui-input" disabled='{{isedit}}' placeholder="请输入工号" value='{{account}}' name='account' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input myclass">

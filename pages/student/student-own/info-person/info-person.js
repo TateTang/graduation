@@ -12,7 +12,9 @@ Page({
     have:true,
     gradearray: [],//班级数组
     gradeId: [],//班级id
-    gradeindex:0
+    gradeindex:0,
+    isedit:true,//值不可改变
+    gradename:'',
   },
 
   /**
@@ -37,8 +39,9 @@ Page({
       data: {},
       success: function (res) {
         var list = res.data.dataList;//获取数据
-        //console.log(list);
-        if (list == null) {
+        // console.log(list);
+        // console.log(list.length);
+        if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
@@ -62,18 +65,23 @@ Page({
       method: 'GET',
       success: function (res) {
         var result = res.data.data
-        if (result==null){
+        // console.log(result);
+        // console.log(result.length);
+        if (result==null){ //说明是没有值的
+          that.setData({
+            isedit:false
+          })
           return;
         }
         console.log(result);
         that.setData({
           name: result.name,
           account: result.account,
-          gradeindex:(result.gradeobj.id -1)
+          gradeindex:(result.gradeobj.id -1),
+          gradename:result.gradeobj.name
         })
       }
     })
-
   },
 
   /**
@@ -182,6 +190,11 @@ Page({
   },
   bindGradeChange: function (e) {
     //console.log('picker发送选择改变，携带值为', e.detail.value)
+    if (this.data.gradename != '') { //也就是说是编辑操作 所以改变的时候 当前值也要改变
+      this.setData({
+        gradename: this.data.gradearray[e.detail.value]
+      })
+    }
     this.setData({
       gradeindex: e.detail.value
     })

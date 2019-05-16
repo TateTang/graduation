@@ -12,7 +12,8 @@ Page({
     leavestatus: [],
     index: 0,
     showIndex: null,
-    leaveid:''
+    leaveid:'',
+    ishave:false
   },
 
   /**
@@ -35,8 +36,11 @@ Page({
       },
       success: function(res) {
         var list = res.data.dataList; //获取数据
-        console.log(list);
-        if (list == null) {
+        // console.log(list);
+        if (list.length ==0) {
+          that.setData({
+            ishave:true
+          })
           return;
         }
         for (var i = 0; i < list.length; i++) {

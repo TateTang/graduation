@@ -8,7 +8,8 @@ Page({
    */
   data: {
     name:'',
-    account:''
+    account:'',
+    isedit:true //不可编辑的
   },
 
   /**
@@ -31,7 +32,12 @@ Page({
       method:'GET',
       success:function(res){
         var result = res.data.data;
+        // console.log(result);
+        // console.log(result.length);
         if(result==null){
+          that.setData({
+            isedit:false//设置可改变值
+          })
           return;
         }
         console.log(res);

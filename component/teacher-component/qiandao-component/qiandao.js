@@ -59,7 +59,8 @@ Component({
       success: function (res) {
         var list = res.data.dataList; //获取数据
         console.log(list);
-        if (list == null) {
+        console.log(list.length);
+        if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
@@ -68,19 +69,7 @@ Component({
           var atime = util.formatTimeFive(Date.parse(list[i].arrivetime));
           satarttime.push(stime);
           endtime.push(etime);
-          arrivetime.push(atime)
-          // console.log(atime);
-          // console.log(stime);
-          // if (atime>stime && atime<etime){
-          //   status.push("迟到");
-          //   console.log("迟到");
-          // } else if (atime == null || atime > etime) {
-          //   status.push("旷课");
-          //   console.log("旷课");
-          // }else{
-          //   status.push("已签到");
-          //   console.log("签到");
-          // }
+          arrivetime.push(atime);
           if (list[i].status == 0 ) {
             status.push("迟到");
           } else if (list[i].status == 1) {

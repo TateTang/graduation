@@ -12,7 +12,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" name='name' placeholder='请输入班级名称' value='{{gradeName}}' />
+            <input class="weui-input" name='name' disabled='{{pageType}}' placeholder='请输入班级名称' value='{{gradeName}}' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input myclass">

@@ -7,7 +7,8 @@ Page({
    */
   data: {
     //课程信息
-    list: []
+    list: [],
+    ishave:false
   },
 
   /**
@@ -39,12 +40,9 @@ Page({
       data: {'leaveopenId':app.globalData.openid},
       success: function (res) {
         var list = res.data.dataList;//获取数据
-        if (list == null) {
-          var toastText = '获取数据失败' + res.data.msg;
-          wx.showToast({
-            title: toastText,
-            icon: '',
-            duration: 2000
+        if (list.length == 0) {
+          that.setData({
+            ishave:true
           })
         } else {
           that.setData({

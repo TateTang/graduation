@@ -19,34 +19,45 @@ Component({
     courseId: [],
     courseindex: 0,
 
-    teacherOpenId: [],//教师选择器
+    teacherOpenId: [], //教师选择器
     teacherarray: [],
     teacherId: [],
     teacherindex: 0,
-
-    username: ''
+    max: 140,
+    username: '',
+    currentNumber: 0
   },
-
+  
   /**
    * 组件的方法列表
    */
   methods: {
-    bindDateChange: function (e) {
+
+    //字数限制
+    inputs: function(e) {
+      //获取输入框的内容
+      var value = e.detail.value;
+      var len = parseInt(value.length);
+      this.setData({
+        currentNumber: len,
+      })
+    },
+    bindDateChange: function(e) {
       this.setData({
         date: e.detail.value
       })
     },
-    bindTeacherChange: function (e) {
+    bindTeacherChange: function(e) {
       this.setData({
         teacherindex: e.detail.value
       })
     },
-    bindCourseChange: function (e) {
+    bindCourseChange: function(e) {
       this.setData({
         courseindex: e.detail.value
       })
     },
-    formSubmit: function (e) {
+    formSubmit: function(e) {
       //校验表单
       const params = e.detail.value;
       if (!this.WxValidate.checkForm(params)) {
@@ -58,7 +69,8 @@ Component({
       var formData = e.detail.value; //获取表单中的数据 //formData['roleobj.id'] = that.data.moldvalue;
       var leavetime = e.detail.value.leavetime + " 08:00:00";
       //var idData = { "id": that.data.gradeId[e.detail.value.gradeobj] };//json对象
-      formData.leavetime = Date.parse(leavetime); //转换
+      formData.leavetime = Date.parse(leavetime.replace(/-/g, '/')); //转换
+      console.log(leavetime.replace(/-/g, '/'));
       formData.courseobj = {
         'id': that.data.courseId[that.data.courseindex]
       };;
@@ -79,19 +91,25 @@ Component({
         },
         success: function (res) {
           // var result = res.data.code;
-          // var url = '../../student-index';
-          // app.navigator(res, url);
+          var url = 'student-index?type=2';
+          app.navigator(res, url);
         }
       });
     },
     //验证函数
     initValidate() {
       const rules = {
+        name: {
+          required: true
+        },
         leavecontent: {
           required: true
         },
       }
       const messages = {
+        name: {
+          required: '你还没有完善个人信息,请先完善个人信息'
+        },
         leavecontent: {
           required: '请填写请假原因'
         },
@@ -108,8 +126,8 @@ Component({
   },
   created() {
     this.initValidate() //验证规则函数
-    rules: { }
-    messages: { }
+    rules: {}
+    messages: {}
 
     wx.setNavigationBarTitle({ //设置导航栏标题
       title: '请假'
@@ -121,9 +139,12 @@ Component({
         'openId': app.globalData.openid
       },
       method: 'GET',
-      success: function (res) {
+      success: function(res) {
         var userdata = res.data.data;
         //console.log(userdata);
+        if (userdata == null) {
+          return;
+        }
         that.setData({
           username: userdata.name
         })
@@ -137,10 +158,10 @@ Component({
       url: app.globalData.localhttp + '/course/getName',
       method: 'GET',
       data: {},
-      success: function (res) {
+      success: function(res) {
         var list = res.data.dataList; //获取数据
         // console.log(list);
-        if (list == null) {
+        if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
@@ -162,10 +183,11 @@ Component({
       url: app.globalData.localhttp + '/teacher/getAll',
       method: 'GET',
       data: {},
-      success: function (res) {
+      success: function(res) {
         var list = res.data.dataList; //获取数据
         // console.log(list);
-        if (list == null) {
+        // console.log(list.length);
+        if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {

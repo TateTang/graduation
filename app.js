@@ -32,13 +32,17 @@ App({
         }
       }
     })
+    //请求数据，查看该用户的信息是否已经完善，如果没有完善个人信息那么就不能点击所有东西，除了我的信息以外
+    // wx.request({
+    //   url: '',
+    // })
   },
 
   globalData: {
     userInfo: null,
     openid: '',
-    localhttp:'http://localhost:8080/',
-    // localhttp: 'https://www.tfleof.top:8443/',
+    // localhttp:'http://localhost:8080/',
+    localhttp: 'https://www.tfleof.top:8443/',
     studnetgradeid:'',
   },
   operator: function(res){//操作函数 写在全局中 都可以调用
@@ -71,5 +75,14 @@ App({
         })
       }, 1000)
     }
+  },
+  /**
+     * 字符串转换为时间
+     * @param  {String} src 字符串
+     */
+  strToDate(dateObj) {
+    dateObj = dateObj.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/(-)/g, '/')
+    dateObj = dateObj.slice(0, dateObj.indexOf("."))
+    return new Date(dateObj)
   }
 })

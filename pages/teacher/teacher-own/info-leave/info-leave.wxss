@@ -84,3 +84,6 @@ input-holder {
   color: #ec5300;
   text-align: center;
 }
+.weui-cells__title{
+  font-size: 16px;
+}

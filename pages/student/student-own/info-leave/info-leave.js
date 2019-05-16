@@ -33,7 +33,7 @@ Page({
       success: function (res) {
         var list = res.data.dataList; //获取数据
         console.log(list);
-        if (list == null) {
+        if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
@@ -103,5 +103,14 @@ Page({
    */
   onShareAppMessage: function() {
 
-  }
+  },
+  /**
+     * 字符串转换为时间
+     * @param  {String} src 字符串
+     */
+  // strToDate(dateObj) {
+  //   dateObj = dateObj.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/(-)/g, '/')
+  //   dateObj = dateObj.slice(0, dateObj.indexOf("."))
+  //   return new Date(dateObj)
+  // }
 })

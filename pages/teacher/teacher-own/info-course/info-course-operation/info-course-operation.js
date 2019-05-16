@@ -16,7 +16,7 @@ Page({
     gradeId: [], //班级id
     index: 0,
     gradeindex: 0,
-
+    // isedit:false,//发布课程可改变，编辑课程除了课程名称其他都不能改变。
 
 
     courseId: -1,
@@ -38,6 +38,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.initValidate() //验证规则函数
+    rules: { }
+    messages: { }
+
     wx.setNavigationBarTitle({
       title: '课程信息',
     })
@@ -57,15 +61,11 @@ Page({
       data: {},
       success: function(res) {
         var list = res.data.dataList; //获取数据
-        //console.log(list);
-        if (list == null) {
-          var toastText = '获取数据失败' + res.data.msg;
-          wx.showToast({
-            title: toastText,
-            icon: '',
-            duration: 2000
-          })
-        } else {
+        // console.log(list);
+        // console.log(list.length);
+        if (list.length == 0) {
+          return;
+        } 
           for (var i = 0; i < list.length; i++) {
             gradeNameArr.push(list[i].name);
             gradeIdArr.push(list[i].id);
@@ -74,7 +74,7 @@ Page({
             gradearray: gradeNameArr, //设置变量
             gradeId: gradeIdArr
           })
-        }
+        
       },
     })
     //var that = this; //页面初始化，options为页面跳转所带来的的参数
@@ -211,12 +211,34 @@ Page({
     })
   },
   formSubmit: function(e) {
+    //校验表单
+    const params = e.detail.value;
+    var stime = util.formatDate(new Date()) + " " + e.detail.value.startTime;
+    var etime = util.formatDate(new Date()) + " " + e.detail.value.endTime;
+    
+    let start = parseInt(new Date(stime).getTime());
+    let end =  parseInt(new Date(etime).getTime());
+    //  console.log(start);
+    //  console.log(end);
+    if(end < start){
+      // console.log(1);
+      wx.showModal({
+        content: '选择的时间不合理，开始时间应小于结束时间',
+        showCancel: false,
+      })
+      return false;
+    }
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0];
+      this.showModal(error);
+      return false;
+    }
     var that = this;
     var formData = e.detail.value; //获取表单中的数据 //formData['roleobj.id'] = that.data.moldvalue;
     var idData = {
       "id": that.data.gradeId[e.detail.value.gradeobj]
     }; //json对象
-    //console.log(idData);
+    // console.log(idData);
     formData.gradeobj = idData;
     formData.week = that.data.weekarray[e.detail.value.week]; //week value值
     formData.teacherobj = {
@@ -229,9 +251,12 @@ Page({
     console.log(JSON.stringify(formData)); //打印表单中的数据
     var url = that.data.addUrl; //添加课程信息的url
     var method = 'POST';
-    if (that.data.courseId != -1) { //点击的是编辑按钮， 判断是修改还是添加
+    if (that.data.courseId != -1) { //点击的是编辑按钮， 
       formData.id = that.data.courseId;
       url = that.data.updateUrl + "?courseId=" + that.data.courseId; //编辑按钮 修改课程信息
+      formData.startTime = ''; //转换
+      formData.endTime = '';
+      console.log(JSON.stringify(formData)); //编辑的话时间不会修改
       method = 'PUT';
     }
     wx.request({
@@ -272,19 +297,19 @@ Page({
   //验证函数
   initValidate() {
     const rules = {
-      account: {
+      name: {
         required: true
       },
-      name: {
+      gradeobj: {
         required: true
       }
     }
     const messages = {
-      account: {
-        required: '请输入教师工号'
-      },
       name: {
-        required: '请填写教师姓名'
+        required: '请输入课程名称'
+      },
+      gradeobj: {
+        required: '请选择班级，如没有班级，请先创建班级'
       }
     }
     this.WxValidate = new WxValidate(rules, messages)

@@ -6,7 +6,8 @@ Page({
    */
   data: {
     //班级信息
-    list:[] 
+    list:[],
+    ishave:false
   },
 
   /**
@@ -36,7 +37,12 @@ Page({
         data: {'teacheropenId':app.globalData.openid},
         success: function(res){
           var list =  res.data.dataList;//获取数据
-          if(list==null){
+          // console.log(list);
+          // console.log(list.length);
+          if(list.length==0){
+            that.setData({
+              ishave:true
+            })
             return;
           }else{
             that.setData({

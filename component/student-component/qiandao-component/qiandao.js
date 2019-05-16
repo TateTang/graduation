@@ -40,13 +40,14 @@ Component({
     },
     pass: function(e) {
       var that = this;
+      var index = e.target.dataset.index;
       wx.showModal({
         title: '课程签到提示',
         content: '确定要进行\r\n课程[' + e.target.dataset.coursename + ']的签到吗？',
         success: function(res) {
           if (res.confirm) {
+            list.splice(index, 1); //删除前台
             var formData = that.data.formData;
-            console.log(formData);
             wx.request({
               url: app.globalData.localhttp + 'arrive/create',
               data: JSON.stringify(formData), //json转字符串
@@ -54,18 +55,13 @@ Component({
               header: {
                 'Content-Type': 'application/json'
               },
-              success: function (res) {
-                console.log(res);
-                var toastText = '操作成功！';
-                var code = res.data.code;
-                if (code != '200') {
-                  toastText = '操作失败!' + res.data.msg;
-                }
-                wx.showToast({
-                  title: toastText,
-                  icon: 'success',
-                  duration: 1500,
-                });
+              success: function(result) {
+                // console.log(result);
+                var url = 'student-index?type=1';
+                app.navigator(result, url);
+                // that.setData({
+                //   list: list
+                // })
               }
             });
           }
@@ -113,6 +109,8 @@ Component({
           return;
         }
         for (var i = 0; i < list.length; i++) {
+          // console.log(list[i].startTime);
+          // console.log(list[i].startTime.replace(/-/g, '/'));
           starttime.push(util.formatTimeFive(Date.parse(list[i].startTime)));
           endtime.push(util.formatTimeFive(Date.parse(list[i].endTime)));
           //查询签到信息是否已经存在啦,根据openid和couseid查询签到信息 
@@ -123,27 +121,21 @@ Component({
               'stuopenId': app.globalData.openid,
               'courseId': list[i].id,
             },
-            success: function (res) {
+            success: function(res) {
               var arrivedata = res.data.dataList;
               // console.log(arrivedata);
-              if(arrivedata.length == 0){
+              if (arrivedata.length == 0) {
                 return;
               }
-              alength = arrivedata.length;
               // console.log(alength);//如果已经签到了就不再显示出来 已经签到的课程有几个
             }
           })
-          // console.log(alength);
-          if (alength !=0){
-            list.splice(i, 1) //删除前台
-            console.log(i);
-          }
         }
         that.setData({
           list: list,
           starttime: starttime,
           endtime: endtime,
-        }) 
+        })
       },
     })
   },

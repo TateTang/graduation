@@ -15,6 +15,12 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
     // 登录
     wx.login({
       success: res => {
@@ -35,7 +41,7 @@ Page({
               method: 'GET',
               success: function (res) {
                 var userdata = res.data.data;
-                console.log(userdata);
+                // console.log(userdata);
                 if (userdata != null) {//跳转
                   if(userdata.roleobj==null){
                     return;

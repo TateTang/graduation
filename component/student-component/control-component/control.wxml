@@ -12,7 +12,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" value='{{username}}' placeholder='请输入你的姓名' disabled='true' />
+            <input class="weui-input" value='{{username}}' placeholder='请输入你的姓名' disabled='true' name='name'/>
           </view>
         </view>
         <view class="weui-cell weui-cell_input myclass">
@@ -52,8 +52,8 @@
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入请假原因" style="height: 5.3em" name="leavecontent"/>
-                    <view class="weui-textarea-counter">0/200</view>
+                    <textarea class="weui-textarea" placeholder="请输入请假原因" style="height: 5.3em" name="leavecontent" bindinput='inputs'/>
+                    <view class="weui-textarea-counter" >{{currentNumber|0}}/{{max}}</view>
                 </view>
             </view>
         </view>
