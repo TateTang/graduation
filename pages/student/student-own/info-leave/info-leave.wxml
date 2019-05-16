@@ -1,7 +1,8 @@
 <!--pages/student/sudent-own/info-leave/info-leave.wxml-->
 <view class="page">
     <view class="page__bd">
-        <view class="weui-cells__title">我的请假单信息</view>
+        <view class="weui-cells__title" wx:if='{{length==0?false:true}}'>我的请假单信息</view>
+        <view class="weui-cells__title" wx:if='{{length==0?true:false}}'>暂无请假信息</view>
         <block wx:for="{{list}}" wx:key="{{index}}">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">

@@ -11,6 +11,7 @@ Page({
     leavetime: [],
     leavestatus: [],
     index: 0,
+    length:0
   },
 
   /**
@@ -32,6 +33,9 @@ Page({
       },
       success: function (res) {
         var list = res.data.dataList; //获取数据
+        that.setData({
+          length: list.length
+        })
         console.log(list);
         if (list.length == 0) {
           return;

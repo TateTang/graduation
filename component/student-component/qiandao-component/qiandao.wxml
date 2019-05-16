@@ -1,7 +1,8 @@
 <!--pages/student/qiandao/qiandao.wxml-->
 <view class="page">
   <view class="page__bd">
-    <view class="weui-cells__title">需要签到的课程</view>
+    <view class="weui-cells__title" wx:if='{{length==0?false:true}}'>需要签到的课程</view>
+    <view class="weui-cells__title" wx:if='{{length==0?true:false}}'>暂无需要签到的课程</view>
     <block wx:for="{{list}}" wx:key="{{index}}">
       <form bindsubmit='formSubmit' bindreset='formReset'>
         <input hidden='true' value='{{item.id}}' name='courseobj'></input>

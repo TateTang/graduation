@@ -1,7 +1,8 @@
 <!--pages/student/sudent-own/info-course/info-course.wxml-->
 <view class="page">
     <view class="page__bd">
-        <view class="weui-cells__title">我的签到信息</view>
+        <view class="weui-cells__title" wx:if='{{length==0?false:true}}'>我的签到信息</view>
+        <view class="weui-cells__title" wx:if='{{length==0?true:false}}'>暂无签到信息</view>
         <block wx:for="{{list}}" wx:key="{{index}}">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">

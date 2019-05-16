@@ -20,6 +20,7 @@ Component({
     index: 0,
     showIndex: null,
     formData: '',
+    length:0
   },
 
   /**
@@ -46,7 +47,6 @@ Component({
         content: '确定要进行\r\n课程[' + e.target.dataset.coursename + ']的签到吗？',
         success: function(res) {
           if (res.confirm) {
-            list.splice(index, 1); //删除前台
             var formData = that.data.formData;
             wx.request({
               url: app.globalData.localhttp + 'arrive/create',
@@ -59,9 +59,6 @@ Component({
                 // console.log(result);
                 var url = 'student-index?type=1';
                 app.navigator(result, url);
-                // that.setData({
-                //   list: list
-                // })
               }
             });
           }
@@ -96,15 +93,18 @@ Component({
     var that = this;
     //查询需要签到的课程,签到了的课程不再显示出来
     wx.request({
-      url: app.globalData.localhttp + '/course/getAll',
+      url: app.globalData.localhttp + '/course/getNoSignIn',
       method: 'GET',
       data: {
         'gradeId': app.globalData.studnetgradeid,
+        'stuopenId':app.globalData.openid
       },
       success: function(res) {
         var list = res.data.dataList; //获取数据
-        var alength = 0;
         // console.log(list);
+        that.setData({
+          length:list.length
+        })
         if (list.length == 0) {
           return;
         }
@@ -113,23 +113,6 @@ Component({
           // console.log(list[i].startTime.replace(/-/g, '/'));
           starttime.push(util.formatTimeFive(Date.parse(list[i].startTime)));
           endtime.push(util.formatTimeFive(Date.parse(list[i].endTime)));
-          //查询签到信息是否已经存在啦,根据openid和couseid查询签到信息 
-          wx.request({
-            url: app.globalData.localhttp + '/arrive/getAll',
-            method: 'GET',
-            data: {
-              'stuopenId': app.globalData.openid,
-              'courseId': list[i].id,
-            },
-            success: function(res) {
-              var arrivedata = res.data.dataList;
-              // console.log(arrivedata);
-              if (arrivedata.length == 0) {
-                return;
-              }
-              // console.log(alength);//如果已经签到了就不再显示出来 已经签到的课程有几个
-            }
-          })
         }
         that.setData({
           list: list,

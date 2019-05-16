@@ -13,6 +13,7 @@ Page({
     actuallystarttime:[],
     actuallyendtime:[],
     index: 0,
+    length:0,
   },
 
   /**
@@ -36,8 +37,11 @@ Page({
       },
       success: function (res) {
         var list = res.data.dataList; //获取数据
-        // console.log(list);
-        if (list == null) {
+        // console.log(list.length);
+        that.setData({
+          length : list.length
+        })
+        if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
