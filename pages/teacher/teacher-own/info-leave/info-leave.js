@@ -12,8 +12,8 @@ Page({
     leavestatus: [],
     index: 0,
     showIndex: null,
-    leaveid:'',
-    ishave:false
+    leaveid: '',
+    ishave: false
   },
 
   /**
@@ -37,14 +37,14 @@ Page({
       success: function(res) {
         var list = res.data.dataList; //获取数据
         // console.log(list);
-        if (list.length ==0) {
+        if (list.length == 0) {
           that.setData({
-            ishave:true
+            ishave: true
           })
           return;
         }
         for (var i = 0; i < list.length; i++) {
-          leavetime.push(util.formatTimeThree(Date.parse(list[i].leavetime)));
+          leavetime.push(util.formatDateTwo(util.chaistr(list[i].leavetime)));
           if (list[i].status == 0) {
             leavestatus.push("已提交");
           }
@@ -134,7 +134,7 @@ Page({
             success: function(res) {
               var url = 'info-leave'
               console.log(res);
-              app.navigator(res,url);
+              app.navigator(res, url, '请假审批成功');
             }
           })
         }
@@ -152,12 +152,11 @@ Page({
   /**
    * 弹出框蒙层截断touchmove事件
    */
-  preventTouchMove: function () {
-  },
+  preventTouchMove: function() {},
   /**
    * 隐藏模态对话框
    */
-  hideModal: function () {
+  hideModal: function() {
     this.setData({
       showModal: false
     });
@@ -165,17 +164,17 @@ Page({
   /**
    * 对话框取消按钮点击事件
    */
-  onCancel: function () {
+  onCancel: function() {
     this.hideModal();
   },
   /**
    * 对话框确认按钮点击事件
    */
-  formSubmit: function (e) {
-    var that = this ;
+  formSubmit: function(e) {
+    var that = this;
     var formData = e.detail.value; //获取表单中的数据
     // console.log(leaveid);
-    formData.status = 2;//申请驳回
+    formData.status = 2; //申请驳回
     console.log(JSON.stringify(formData));
     var url = app.globalData.localhttp + 'leave/update' + "?leaveId=" + that.data.leaveid;
     wx.request({
@@ -185,10 +184,10 @@ Page({
       header: {
         'Content-Type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         // var result = res.data.code;
         var url = 'info-leave';
-        app.navigator(res, url);
+        app.navigator(res, url, '请假驳回成功');
       }
     });
   },

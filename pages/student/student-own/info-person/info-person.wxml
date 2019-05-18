@@ -11,7 +11,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入学号" disabled='{{isedit}}' value='{{account}}' name='account' />
+            <input class="weui-input" placeholder="请输入学号" type='number' bindblur='getAccount' disabled='{{isedit}}' value='{{account}}' name='account' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input myclass">
@@ -32,7 +32,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <picker value="{{gradeindex}}" range="{{gradearray}}" bindchange="bindGradeChange" name="gradeobj" disabled='{{isedit}}' >
+            <picker value="{{gradeindex}}" range="{{gradearray}}" bindchange="bindGradeChange" name="gradeobj" disabled='{{isedit}}'>
               <view class="weui-input">{{gradename==''?gradearray[gradeindex]:gradename}}</view>
             </picker>
           </view>

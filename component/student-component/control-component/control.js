@@ -27,7 +27,7 @@ Component({
     username: '',
     currentNumber: 0
   },
-  
+
   /**
    * 组件的方法列表
    */
@@ -84,15 +84,15 @@ Component({
       var url = app.globalData.localhttp + 'leave/create';
       wx.request({
         url: url,
-        data: JSON.stringify(formData),//json转字符串
+        data: JSON.stringify(formData), //json转字符串
         method: 'POST',
         header: {
           'Content-Type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           // var result = res.data.code;
           var url = 'student-index?type=2';
-          app.navigator(res, url);
+          app.navigator(res, url, '请假申请成功');
         }
       });
     },
@@ -150,31 +150,6 @@ Component({
         })
       }
     });
-
-    var courseNameArr = [];
-    var courseIdArr = [];
-    //获取课程名称信息
-    wx.request({
-      url: app.globalData.localhttp + '/course/getName',
-      method: 'GET',
-      data: {},
-      success: function(res) {
-        var list = res.data.dataList; //获取数据
-        // console.log(list);
-        if (list.length == 0) {
-          return;
-        }
-        for (var i = 0; i < list.length; i++) {
-          courseNameArr.push(list[i].name);
-          courseIdArr.push(list[i].id);
-        }
-        that.setData({
-          coursearray: courseNameArr, //设置变量
-          courseId: courseIdArr
-        })
-
-      },
-    })
     var teacherNameArr = [];
     var teacherIdArr = [];
     var teacherOpenIdArr = [];
@@ -199,6 +174,29 @@ Component({
           teacherarray: teacherNameArr, //设置变量
           teacherId: teacherIdArr,
           teacherOpenId: teacherOpenIdArr
+        })
+      },
+    })
+    var courseNameArr = [];
+    var courseIdArr = [];
+    //获取课程名称信息
+    wx.request({
+      url: app.globalData.localhttp + '/course/getName',
+      method: 'GET',
+      data: {},
+      success: function(res) {
+        var list = res.data.dataList; //获取数据
+        // console.log(list);
+        if (list.length == 0) {
+          return;
+        }
+        for (var i = 0; i < list.length; i++) {
+          courseNameArr.push(list[i].name);
+          courseIdArr.push(list[i].id);
+        }
+        that.setData({
+          coursearray: courseNameArr, //设置变量
+          courseId: courseIdArr
         })
       },
     })

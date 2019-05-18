@@ -10,16 +10,16 @@ Page({
     list: [],
     arrivetime: [],
     status: [],
-    actuallystarttime:[],
-    actuallyendtime:[],
+    actuallystarttime: [],
+    actuallyendtime: [],
     index: 0,
-    length:0,
+    length: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.setNavigationBarTitle({ //设置导航栏标题
       title: '我的签到'
     })
@@ -35,20 +35,20 @@ Page({
       data: {
         'stuopenId': app.globalData.openid,
       },
-      success: function (res) {
+      success: function(res) {
         var list = res.data.dataList; //获取数据
         // console.log(list.length);
         that.setData({
-          length : list.length
+          length: list.length
         })
         if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
           // console.log(util.formatTimeFive(Date.parse(list[i].arrivetime)));
-          arrivetime.push(util.formatTimeFive(Date.parse(list[i].arrivetime)));
-          actuallystarttime.push(util.formatTimeFive(Date.parse(list[i].courseobj.startTime)))
-          actuallyendtime.push(util.formatTimeFive(Date.parse(list[i].courseobj.endTime)))
+          arrivetime.push(util.formatDateOne(util.chaistr(list[i].arrivetime)));
+          actuallystarttime.push(util.formatDateOne(util.chaistr(list[i].courseobj.startTime)));
+          actuallyendtime.push(util.formatDateOne(util.chaistr(list[i].courseobj.endTime)));
           if (list[i].status == 0) {
             status.push("迟到");
           } else if (list[i].status == 1) {
@@ -72,49 +72,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

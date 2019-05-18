@@ -1,4 +1,5 @@
 /**app.wxss**/
+
 /* .container {
   height: 100%;
   display: flex;
@@ -8,8 +9,9 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 }  */
+
 page {
   display: block;
   min-height: 100%;
-  background-color: #EDEDED;
+  background-color: #ededed;
 }

@@ -10,8 +10,8 @@ Page({
   data: {
     starttime: "08:00", //开始时间
     endtime: "10:00", //结束时间
-    weekarray: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'], //星期数组
-    weekid: ['0', '1', '2', '3', '4', '5', '6'],
+    // weekarray: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'], //星期数组
+    // weekid: ['0', '1', '2', '3', '4', '5', '6'],
     gradearray: [], //班级数组
     gradeId: [], //班级id
     index: 0,
@@ -23,7 +23,7 @@ Page({
     courseName: '',
     coursestarttime: '',
     courseendtime: '',
-    courseweek: '',
+    courseyzm: '',
     coursegradename: '',
     addUrl: app.globalData.localhttp + 'course/create',
     updateUrl: app.globalData.localhttp + '/course/update',
@@ -31,7 +31,8 @@ Page({
       name: '',
       phone: ''
     },
-    pageType: true
+    pageType: true,
+    operatortitle: '保存',
   },
 
   /**
@@ -39,8 +40,8 @@ Page({
    */
   onLoad: function(options) {
     this.initValidate() //验证规则函数
-    rules: { }
-    messages: { }
+    rules: {}
+    messages: {}
 
     wx.setNavigationBarTitle({
       title: '课程信息',
@@ -48,7 +49,8 @@ Page({
     //按钮设置
     if (options.courseId == -1) {
       this.setData({
-        pageType: false
+        pageType: false,
+        operatortitle: '发布'
       })
     }
     var that = this;
@@ -65,16 +67,16 @@ Page({
         // console.log(list.length);
         if (list.length == 0) {
           return;
-        } 
-          for (var i = 0; i < list.length; i++) {
-            gradeNameArr.push(list[i].name);
-            gradeIdArr.push(list[i].id);
-          }
-          that.setData({
-            gradearray: gradeNameArr, //设置变量
-            gradeId: gradeIdArr
-          })
-        
+        }
+        for (var i = 0; i < list.length; i++) {
+          gradeNameArr.push(list[i].name);
+          gradeIdArr.push(list[i].id);
+        }
+        that.setData({
+          gradearray: gradeNameArr, //设置变量
+          gradeId: gradeIdArr
+        })
+
       },
     })
     //var that = this; //页面初始化，options为页面跳转所带来的的参数
@@ -109,10 +111,10 @@ Page({
         } else {
           that.setData({ //设置变量
             courseName: course.name,
-            coursestarttime: util.formatTimeTwo(Date.parse(course.startTime)),
-            courseendtime: util.formatTimeTwo(Date.parse(course.endTime)),
+            coursestarttime: util.formatDateThree(util.chaistr(course.startTime)),
+            courseendtime: util.formatDateThree(util.chaistr(course.endTime)),
             coursegradename: course.gradeobj.name,
-            courseweek: course.week,
+            courseyzm: course.yzm,
           });
         }
       }
@@ -189,16 +191,16 @@ Page({
       endtime: e.detail.value
     })
   },
-  bindWeekChange: function(e) {
-    if (this.data.courseweek != '') { //也就是说是编辑操作 所以改变的时候 当前值也要改变
-      this.setData({
-        courseweek: this.data.weekarray[e.detail.value]
-      })
-    }
-    this.setData({
-      index: e.detail.value
-    })
-  },
+  // bindWeekChange: function(e) {
+  //   if (this.data.courseweek != '') { //也就是说是编辑操作 所以改变的时候 当前值也要改变
+  //     this.setData({
+  //       courseweek: this.data.weekarray[e.detail.value]
+  //     })
+  //   }
+  //   this.setData({
+  //     index: e.detail.value
+  //   })
+  // },
   bindGradeChange: function(e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)
     if (this.data.coursegradename != '') { //也就是说是编辑操作 所以改变的时候 当前值也要改变
@@ -215,12 +217,10 @@ Page({
     const params = e.detail.value;
     var stime = util.formatDate(new Date()) + " " + e.detail.value.startTime;
     var etime = util.formatDate(new Date()) + " " + e.detail.value.endTime;
-    
-    let start = parseInt(new Date(stime).getTime());
-    let end =  parseInt(new Date(etime).getTime());
-    //  console.log(start);
-    //  console.log(end);
-    if(end < start){
+
+    let start = parseInt(new Date(stime.replace(/-/g, '/')).getTime());
+    let end = parseInt(new Date(etime.replace(/-/g, '/')).getTime());
+    if (end < start) {
       // console.log(1);
       wx.showModal({
         content: '选择的时间不合理，开始时间应小于结束时间',
@@ -240,14 +240,14 @@ Page({
     }; //json对象
     // console.log(idData);
     formData.gradeobj = idData;
-    formData.week = that.data.weekarray[e.detail.value.week]; //week value值
+    // formData.week = that.data.weekarray[e.detail.value.week]; //week value值
     formData.teacherobj = {
       'openid': app.globalData.openid
     };
     var startTime = util.formatDate(new Date()) + " " + e.detail.value.startTime;
     var endTime = util.formatDate(new Date()) + " " + e.detail.value.endTime;
-    formData.startTime = Date.parse(startTime); //转换
-    formData.endTime = Date.parse(endTime);
+    formData.startTime = Date.parse(startTime.replace(/-/g, '/')); //转换
+    formData.endTime = Date.parse(endTime.replace(/-/g, '/'));
     console.log(JSON.stringify(formData)); //打印表单中的数据
     var url = that.data.addUrl; //添加课程信息的url
     var method = 'POST';
@@ -269,7 +269,7 @@ Page({
       success: function(res) {
         // var result = res.data.code;
         var url = '../info-course'
-        app.navigator(res, url);
+        app.navigator(res, url, '操作成功');
       }
     });
   },
@@ -287,7 +287,7 @@ Page({
             success: function(res) {
               // var result = res.data.code;
               var url = '../info-course'
-              app.navigator(res, url);
+              app.navigator(res, url, '删除成功');
             }
           })
         }
@@ -302,6 +302,11 @@ Page({
       },
       gradeobj: {
         required: true
+      },
+      yzm: {
+        required: true,
+        minlength: 6,
+        maxlength: 6
       }
     }
     const messages = {
@@ -310,6 +315,11 @@ Page({
       },
       gradeobj: {
         required: '请选择班级，如没有班级，请先创建班级'
+      },
+      yzm: {
+        required: '请输入6位签到码',
+        minlength: '最少6位签到码',
+        maxlength: '最多6位签到码'
       }
     }
     this.WxValidate = new WxValidate(rules, messages)

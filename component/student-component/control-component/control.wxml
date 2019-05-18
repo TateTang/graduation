@@ -12,56 +12,64 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" value='{{username}}' placeholder='请输入你的姓名' disabled='true' name='name'/>
+            <input class="weui-input" value='{{username}}' placeholder='请输入你的姓名' disabled='true' name='name' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input myclass">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">日期<i class="mystar">*</i></view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker mode="date" value="{{date}}" start="2015-09-01" end="2050-09-01" name="leavetime" bindchange="bindDateChange">
-                        <view class="weui-input">{{date}}</view>
-                    </picker>
-                </view>
+          <view class="weui-cell__hd">
+            <view class="weui-label">日期
+              <i class="mystar">*</i>
             </view>
-
-         <view class="weui-cell weui-cell_input myclass">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">老师<i class="mystar">*</i></view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker  value="{{teacherindex}}" range="{{teacherarray}}" bindchange="bindTeacherChange" >
-                        <view class="weui-input">{{teacherarray[teacherindex]}}</view>
-                    </picker>
-                </view>
-            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="date" value="{{date}}" start="2015-09-01" end="2050-09-01" name="leavetime" bindchange="bindDateChange">
+              <view class="weui-input">{{date}}</view>
+            </picker>
+          </view>
+        </view>
 
         <view class="weui-cell weui-cell_input myclass">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">课程<i class="mystar">*</i></view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker  value="{{courseindex}}" range="{{coursearray}}" bindchange="bindCourseChange" >
-                        <view class="weui-input">{{coursearray[courseindex]}}</view>
-                    </picker>
-                </view>
+          <view class="weui-cell__hd">
+            <view class="weui-label">老师
+              <i class="mystar">*</i>
             </view>
-        
-         <view class="weui-cell weui-cell_input myclass myclass">原因<i class="mystar">*</i></view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker value="{{teacherindex}}" range="{{teacherarray}}" bindchange="bindTeacherChange">
+              <view class="weui-input">{{teacherarray[teacherindex]}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input myclass">
+          <view class="weui-cell__hd">
+            <view class="weui-label">课程
+              <i class="mystar">*</i>
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker value="{{courseindex}}" range="{{coursearray}}" bindchange="bindCourseChange">
+              <view class="weui-input">{{coursearray[courseindex]}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input myclass myclass">原因
+          <i class="mystar">*</i>
+        </view>
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入请假原因" style="height: 5.3em" name="leavecontent" bindinput='inputs'/>
-                    <view class="weui-textarea-counter" >{{currentNumber|0}}/{{max}}</view>
-                </view>
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <textarea class="weui-textarea" placeholder="请输入请假原因" style="height: 5.3em" name="leavecontent" bindinput='inputs' />
+              <view class="weui-textarea-counter">{{currentNumber|0}}/{{max}}</view>
             </view>
+          </view>
         </view>
       </view>
-       <view class="edit">
+      <view class="edit">
         <button type='default' form-type='submit'>提交</button>
-       </view> 
+      </view>
     </form>
   </view>
-   
+
 </view>

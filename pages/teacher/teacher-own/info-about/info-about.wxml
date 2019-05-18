@@ -1,27 +1,27 @@
 <view class="page">
-    <view class="page__bd">
-        
-        <view class="weui-cells__title">
-              <image src='../../../../src/images/qiandao.png'></image>
-              <view class='title'>
-                  课堂考勤吧
-              </view>
-        </view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">官方网站</view>
-                <view class="weui-cell__ft">https://www.tfleof.top</view>
-            </view>
-             <view class="weui-cell">
-                <view class="weui-cell__bd">热情提示</view>
-                <view class="weui-cell__ft">课堂考勤吧小程序完全免费哟！</view>
-            </view>
-        </view>
+  <view class="page__bd">
+
+    <view class="weui-cells__title">
+      <image src='../../../../src/images/qiandao.png'></image>
+      <view class='title'>
+        课堂考勤吧
+      </view>
     </view>
-    <view class="weui-footer weui-footer_fixed-bottom">
-            <!-- <view class="weui-footer__links">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">官方网站</view>
+        <view class="weui-cell__ft">https://www.tfleof.top</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">热情提示</view>
+        <view class="weui-cell__ft">课堂考勤吧小程序完全免费哟！</view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-footer weui-footer_fixed-bottom">
+    <!-- <view class="weui-footer__links">
                 <navigator url="" class="weui-footer__link">官方首页</navigator>
             </view> -->
-            <view class="weui-footer__text">Copyright © 2018-2019 tfleof.top</view>
-        </view>
+    <view class="weui-footer__text">Copyright © 2018-2019 tfleof.top</view>
+  </view>
 </view>

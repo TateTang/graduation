@@ -5,12 +5,15 @@
   line-height: 2.0;
   font-size: 16px;
 }
+
 .xiangqing {
   color: #999;
 }
+
 .leavecontent {
   margin-left: 5px;
 }
+
 .mini-btn {
   margin-right: 5px;
 }
@@ -58,6 +61,7 @@
   border-radius: 4rpx;
   font-size: 28rpx;
 }
+
 input-holder {
   color: #666;
   font-size: 28rpx;
@@ -84,6 +88,7 @@ input-holder {
   color: #ec5300;
   text-align: center;
 }
-.weui-cells__title{
+
+.weui-cells__title {
   font-size: 16px;
 }

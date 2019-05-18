@@ -13,17 +13,17 @@ Component({
    * 组件的初始数据
    */
   data: {
-    
+
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    onshare:function(e){
+    onshare: function(e) {
       console.log(1);
     },
-    onShareAppMessage: function (e) {
+    onShareAppMessage: function(e) {
       return {
         title: '自定义分享标题',
 
@@ -36,7 +36,7 @@ Component({
     }
   },
   created() {
-    wx.setNavigationBarTitle({//设置导航栏标题
+    wx.setNavigationBarTitle({ //设置导航栏标题
       title: '我的'
     })
   }

@@ -1,43 +1,43 @@
 <!--pages/student/sudent-own/info-leave/info-leave.wxml-->
 <view class="page">
-    <view class="page__bd">
-        <view class="weui-cells__title" wx:if='{{length==0?false:true}}'>我的请假单信息</view>
-        <view class="weui-cells__title" wx:if='{{length==0?true:false}}'>暂无请假信息</view>
-        <block wx:for="{{list}}" wx:key="{{index}}">
-        <view class="weui-form-preview">
-            <view class="weui-form-preview__hd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">请假人</view>
-                    <view class="weui-form-preview__value">{{list[index].studentobj.gradeobj.name+'-'+list[index].studentobj.name+'-'+list[index].studentobj.account}}</view>
-                </view>
-            </view>
-            <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">请假时间</view>
-                    <view class="weui-form-preview__value">{{leavetime[index]}}</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">授课教师</view>
-                    <view class="weui-form-preview__value">{{list[index].teacherobj.name}}</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">请假课程</view>
-                    <view class="weui-form-preview__value">{{list[index].courseobj.name}}</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">请假原因</view>
-                    <view class="weui-form-preview__value">{{list[index].leavecontent}}</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">请假状态</view>
-                    <view class="weui-form-preview__value">{{leavestatus[index]}}</view>
-                </view>
-                 <view class="weui-form-preview__item" wx:if='{{list[index].status==2?true:false}}'>
-                    <view class="weui-form-preview__label">驳回原因</view>
-                    <view class="weui-form-preview__value">{{item.rejectreason==''?'无原因':item.rejectreason}}</view>
-                </view>
-            </view>
+  <view class="page__bd">
+    <view class="weui-cells__title" wx:if='{{length==0?false:true}}'>我的请假单信息</view>
+    <view class="weui-cells__title" wx:if='{{length==0?true:false}}'>暂无请假信息</view>
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <view class="weui-form-preview">
+        <view class="weui-form-preview__hd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">请假人</view>
+            <view class="weui-form-preview__value">{{list[index].studentobj.gradeobj.name+'-'+list[index].studentobj.name+'-'+list[index].studentobj.account}}</view>
+          </view>
         </view>
-        </block>
-    </view>
+        <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">请假时间</view>
+            <view class="weui-form-preview__value">{{leavetime[index]}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">授课教师</view>
+            <view class="weui-form-preview__value">{{list[index].teacherobj.name}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">请假课程</view>
+            <view class="weui-form-preview__value">{{list[index].courseobj.name}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">请假原因</view>
+            <view class="weui-form-preview__value">{{list[index].leavecontent}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">请假状态</view>
+            <view class="weui-form-preview__value">{{leavestatus[index]}}</view>
+          </view>
+          <view class="weui-form-preview__item" wx:if='{{list[index].status==2?true:false}}'>
+            <view class="weui-form-preview__label">驳回原因</view>
+            <view class="weui-form-preview__value">{{item.rejectreason==null?'无原因':item.rejectreason}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
 </view>

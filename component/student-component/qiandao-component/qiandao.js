@@ -20,7 +20,10 @@ Component({
     index: 0,
     showIndex: null,
     formData: '',
-    length:0
+    length: 0,
+    isFocus: false, //控制input 聚焦
+    yzm_flag: false, //验证码输入遮罩,
+    courseyzm: '',
   },
 
   /**
@@ -28,7 +31,6 @@ Component({
    */
   methods: {
     showBox: function(e) {
-      // console.log(e)
       if (this.data.showIndex == e.currentTarget.dataset.index) {
         this.setData({
           showIndex: null
@@ -39,14 +41,91 @@ Component({
         })
       }
     },
+    //签到按钮
     pass: function(e) {
       var that = this;
-      var index = e.target.dataset.index;
-      wx.showModal({
-        title: '课程签到提示',
-        content: '确定要进行\r\n课程[' + e.target.dataset.coursename + ']的签到吗？',
+      that.setData({
+        yzm_flag: true,
+        isFocus: true
+      })
+      // var that = this;
+      // wx.showModal({
+      //   title: '课程签到提示',
+      //   content: '确定要进行\r\n课程[' + e.target.dataset.coursename + ']的签到吗？',
+      //   success: function(res) {
+      //     if (res.confirm) {
+      //       var formData = that.data.formData;
+      //       wx.request({
+      //         url: app.globalData.localhttp + 'arrive/create',
+      //         data: JSON.stringify(formData), //json转字符串
+      //         method: 'POST',
+      //         header: {
+      //           'Content-Type': 'application/json'
+      //         },
+      //         success: function(result) {
+      //           // console.log(result);
+      //           var url = 'student-index?type=1';
+      //           app.navigator(result, url);
+      //         }
+      //       });
+      //     }
+      //   }
+      // })
+    },
+    setyzm: function(e) {
+      this.setData({
+        yzm: e.detail.value
+      })
+      var yzm = e.detail.value;
+      if (this.data.yzm.length == 6) { //验证码输入6位后自动去进行验证
+        // console.log(yzm); 
+        this.setData({
+          courseyzm: yzm
+        })
+        this.chenkyzm(e);
+      }
+    },
+    closeyzm: function(e) { //关闭验证码输入
+      this.setData({
+        isFocus: false, //失去焦点
+        yzm_flag: false,
+      })
+    },
+    set_Focus: function(e) { //聚焦input
+      this.setData({
+        isFocus: true
+      })
+    },
+    set_notFocus: function(e) { //失去焦点
+      this.setData({
+        isFocus: false
+      })
+    },
+    chenkyzm: function(e) {
+      var that = this;
+      // console.log('请求');
+      // console.log(that.data.courseyzm) //验证码
+      // console.log(e.target.dataset.courseid); //课程id
+      //请求 根据验证码和课程id去查询信息
+      wx.request({
+        url: app.globalData.localhttp + '/course/getCourseByYzm',
+        method: 'GET',
+        data: {
+          'courseId': e.target.dataset.courseid,
+          'yzm': that.data.courseyzm
+        },
         success: function(res) {
-          if (res.confirm) {
+          var result = res.data.data;
+          console.log(result);
+          if (result == null) { //验证码不正确 不进行签到 提示签到失败，清空验证码 自动聚焦isFocus:true
+            wx.showToast({
+              title: '签到码错误\r\n请重新输入',
+              icon: "none",
+              duration: 1500
+            })
+            return;
+          } else { //验证码校验正确 进行签到 插入签到信息
+            console.log('验证码正确');
             var formData = that.data.formData;
             wx.request({
               url: app.globalData.localhttp + 'arrive/create',
@@ -58,7 +137,7 @@ Component({
               success: function(result) {
                 // console.log(result);
                 var url = 'student-index?type=1';
-                app.navigator(result, url);
+                app.navigator(result, url, '课程签到成功');
               }
             });
           }
@@ -97,22 +176,21 @@ Component({
       method: 'GET',
       data: {
         'gradeId': app.globalData.studnetgradeid,
-        'stuopenId':app.globalData.openid
+        'stuopenId': app.globalData.openid
       },
       success: function(res) {
         var list = res.data.dataList; //获取数据
         // console.log(list);
         that.setData({
-          length:list.length
+          length: list.length
         })
         if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
-          // console.log(list[i].startTime);
-          // console.log(list[i].startTime.replace(/-/g, '/'));
-          starttime.push(util.formatTimeFive(Date.parse(list[i].startTime)));
-          endtime.push(util.formatTimeFive(Date.parse(list[i].endTime)));
+          // var date = list[i].startTime;
+          starttime.push(util.formatDateOne(util.chaistr(list[i].startTime)));
+          endtime.push(util.formatDateOne(util.chaistr(list[i].endTime)));
         }
         that.setData({
           list: list,

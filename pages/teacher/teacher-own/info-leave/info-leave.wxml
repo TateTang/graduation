@@ -30,8 +30,8 @@
 
       <!--弹窗-->
       <form bindsubmit='formSubmit' bindreset='formReset'>
-      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-      <view class="modal-dialog" wx:if="{{showModal}}">
+        <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+        <view class="modal-dialog" wx:if="{{showModal}}">
           <view class="modal-title">请假驳回提示</view>
           <view class="modal-content">
             <view class="modal-input">
@@ -40,9 +40,9 @@
           </view>
           <view class="modal-footer">
             <button class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</button>
-            <button class="btn-confirm" data-status="confirm" form-type='submit' >确定</button>
+            <button class="btn-confirm" data-status="confirm" form-type='submit'>确定</button>
           </view>
-      </view>
+        </view>
       </form>
     </block>
   </view>

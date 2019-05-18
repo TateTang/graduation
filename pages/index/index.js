@@ -14,11 +14,11 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  onLoad: function () {
+  onLoad: function() {
     wx.showLoading({
       title: '加载中',
     })
-    setTimeout(function () {
+    setTimeout(function() {
       wx.hideLoading()
     }, 2000)
     // 登录
@@ -34,16 +34,16 @@ Page({
             app.globalData.openid = res.data.data.openid;
             //console.log(app.globalData.openid);
             wx.request({ //判断角色
-              url: app.globalData.localhttp +'wxLogin/getWxLoginByOpenId',
+              url: app.globalData.localhttp + 'wxLogin/getWxLoginByOpenId',
               data: {
                 'openId': res.data.data.openid
               },
               method: 'GET',
-              success: function (res) {
+              success: function(res) {
                 var userdata = res.data.data;
                 // console.log(userdata);
-                if (userdata != null) {//跳转
-                  if(userdata.roleobj==null){
+                if (userdata != null) { //跳转
+                  if (userdata.roleobj == null) {
                     return;
                   }
                   if (userdata.roleobj.id == 1) {
@@ -110,7 +110,7 @@ Page({
       })
     }
   },
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -118,7 +118,7 @@ Page({
       hasUserInfo: true
     })
   },
-  teacherLogin: function (e) { //教师登录
+  teacherLogin: function(e) { //教师登录
     console.log(e.detail.userInfo);
     //更新表
     wx.request({
@@ -132,7 +132,7 @@ Page({
       url: '/pages/teacher/teacher-index',
     })
   },
-  studentLogin: function (e) { //学生登录
+  studentLogin: function(e) { //学生登录
     console.log(e.detail.userInfo);
     wx.request({
       url: app.globalData.localhttp + 'wxLogin/updateRoleObj?roleId=2&openId=' + app.globalData.openid,

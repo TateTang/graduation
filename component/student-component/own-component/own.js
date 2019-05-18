@@ -20,7 +20,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    
+
   },
   /**
    * 在组件实例进入页面节点树时执行
@@ -40,7 +40,7 @@ Component({
       method: 'GET',
       success: function(res) {
         var user = res.data.data;
-         //console.log(res.data.data);
+        //console.log(res.data.data);
         if (user != null) {
           wx.request({
             url: app.globalData.localhttp + 'grade/getOne',
@@ -66,6 +66,6 @@ Component({
       }
     })
 
-    
+
   }
 })

@@ -6,10 +6,10 @@
     <block wx:for="{{list}}" wx:key="{{index}}">
       <form bindsubmit='formSubmit' bindreset='formReset'>
         <input hidden='true' value='{{item.id}}' name='courseobj'></input>
-        <view class="weui-cells weui-cells_after-title myclass" >
+        <view class="weui-cells weui-cells_after-title myclass">
           <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="showBox" data-index="{{index}}">
             <view class="weui-cell__bd">
-              <view >课程名称：{{item.name}}</view>
+              <view>课程名称：{{item.name}}</view>
             </view>
             <view class="weui-cell__ft weui-cell__ft_in-access">
               <view>{{item.teacherobj.name}}</view>
@@ -26,8 +26,38 @@
               </view>
             </view>
           </view>
-      </view>
+        </view>
       </form>
+      <!--输入考勤验证码-->
+      <view wx:if="{{yzm_flag}}" class="yzm">
+        <view class="input-content-wrap">
+          <view class="top">
+            <view bindtap="closeyzm" class="close">×</view>
+            <view class="txt">请输入6位签到码</view>
+          </view>
+          <view catchtap="set_Focus" class="input-password-wrap">
+            <view class="password_dot">
+              <i wx:if="{{yzm.length>=1}}">{{yzm[0]}}</i>
+            </view>
+            <view class="password_dot">
+              <i wx:if="{{yzm.length>=2}}">{{yzm[1]}}</i>
+            </view>
+            <view class="password_dot">
+              <i wx:if="{{yzm.length>=3}}">{{yzm[2]}}</i>
+            </view>
+            <view class="password_dot">
+              <i wx:if="{{yzm.length>=4}}">{{yzm[3]}}</i>
+            </view>
+            <view class="password_dot">
+              <i wx:if="{{yzm.length>=5}}">{{yzm[4]}}</i>
+            </view>
+            <view class="password_dot">
+              <i wx:if="{{yzm.length>=6}}">{{yzm[5]}}</i>
+            </view>
+          </view>
+        </view>
+        <input bindinput="setyzm" class="input-content" type='number' data-courseid='{{item.id}}' focus="{{isFocus}}" maxlength="6" />
+      </view>
     </block>
   </view>
 

@@ -1,0 +1,86 @@
+.save {
+  margin: 80rpx 23rpx;
+  color: #fff;
+  background: #00a2ff;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 10rpx;
+}
+
+.yzm {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.yzm .input-content-wrap {
+  position: absolute;
+  top: 200rpx;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 600rpx;
+  margin-left: -300rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.yzm .input-content-wrap .top {
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+  border-bottom: 2rpx solid #ddd;
+  justify-content: space-around;
+}
+
+.yzm .input-content-wrap .top .close {
+  font-size: 50rpx;
+  color: #999;
+  font-weight: 100;
+}
+
+.yzm .input-content-wrap .top .txt {
+  margin-right: 30px;
+}
+
+.yzm .input-content-wrap .input-password-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150rpx;
+}
+
+.yzm .input-content-wrap .input-password-wrap .password_dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+  box-sizing: border-box;
+  width: 90rpx;
+  height: 90rpx;
+  border: 2rpx solid #ddd;
+  border-left: none 0;
+}
+
+.yzm .input-content-wrap .input-password-wrap .password_dot:nth-child(1) {
+  border-left: 2rpx solid #ddd;
+}
+
+.yzm .input-content {
+  position: absolute;
+  opacity: 0;
+  left: -100%;
+  top: 600rpx;
+  background: #f56;
+  z-index: -999;
+}
+
+.yzm .input-content.active {
+  z-index: -99;
+}

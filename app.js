@@ -43,10 +43,22 @@ App({
     openid: '',
     // localhttp:'http://localhost:8080/',
     localhttp: 'https://www.tfleof.top:8443/',
-    studnetgradeid:'',
+    studnetgradeid: '',
   },
-  operator: function(res){//操作函数 写在全局中 都可以调用
+  operator: function(res) { //操作函数 写在全局中 都可以调用
     var toastText = '操作成功！';
+    var code = res.data.code;
+    if (code != '200') {
+      toastText = '操作失败!\r\n' + res.data.msg;
+    }
+    wx.showToast({
+      title: toastText,
+      icon: 'success',
+      duration: 1500,
+    });
+  },
+  navigator: function(res, url, message) {
+    var toastText = message;
     var code = res.data.code;
     if (code != '200') {
       toastText = '操作失败!' + res.data.msg;
@@ -56,20 +68,8 @@ App({
       icon: 'success',
       duration: 1500,
     });
-  },
-  navigator:function(res,url){
-    var toastText = '操作成功！';
-    var code = res.data.code;
-    if (code != '200') {
-      toastText = '操作失败!' + res.data.msg;
-    }
-    wx.showToast({
-      title: toastText,
-      icon: 'success',
-      duration: 1500,
-    }); 
     if (code == '200') { //添加成功返回到班级信息界面
-      setTimeout(function () { //2s后返回
+      setTimeout(function() { //2s后返回
         wx.redirectTo({
           url: url,
         })
@@ -77,9 +77,9 @@ App({
     }
   },
   /**
-     * 字符串转换为时间
-     * @param  {String} src 字符串
-     */
+   * 字符串转换为时间
+   * @param  {String} src 字符串
+   */
   strToDate(dateObj) {
     dateObj = dateObj.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/(-)/g, '/')
     dateObj = dateObj.slice(0, dateObj.indexOf("."))

@@ -1,23 +1,28 @@
 /* pages/teacher/teacher-own/info-course/info-course-operation/info-course-operation.wxss */
 @import "../../../../../src/wxss/weui.wxss";
-.myclass{
+
+.myclass {
   line-height: 2.0;
 }
-.mystar{
+
+.mystar {
   color: red;
   margin-left: 2px;
 }
-.weui-cell__bd{
+
+.weui-cell__bd {
   margin-left: 25px;
 }
-.edit{
+
+.edit {
   position: absolute;
-  bottom:0;
-  margin:0 30px;
+  bottom: 0;
+  margin: 0 30px;
   text-align: center;
-  width: calc(100% - 60px)
+  width: calc(100% - 60px);
 }
-.edit button{
+
+.edit button {
   margin-bottom: 8px;
-  border-radius:5px;
+  border-radius: 5px;
 }

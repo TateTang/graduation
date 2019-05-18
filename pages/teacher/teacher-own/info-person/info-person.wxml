@@ -6,18 +6,22 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input myclass">
           <view class="weui-cell__hd">
-            <view class="weui-label">工号<i class="mystar">*</i></view>
+            <view class="weui-label">工号
+              <i class="mystar">*</i>
+            </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" disabled='{{isedit}}' placeholder="请输入工号" value='{{account}}' name='account' />
+            <input class="weui-input" disabled='{{isedit}}' placeholder="请输入工号" type='number' bindblur='getAccount' value='{{account}}' name='account' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input myclass">
           <view class="weui-cell__hd">
-            <view class="weui-label">姓名<i class="mystar">*</i></view>
+            <view class="weui-label">姓名
+              <i class="mystar">*</i>
+            </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入姓名" value='{{name}}' name='name'/>
+            <input class="weui-input" placeholder="请输入姓名" value='{{name}}' name='name' />
           </view>
         </view>
       </view>

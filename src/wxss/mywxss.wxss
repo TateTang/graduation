@@ -1,25 +1,30 @@
 /**
   自定义的样式
 */
-.myclass{
+
+.myclass {
   line-height: 1.80;
   font-size: 16px;
 }
-.mystar{
+
+.mystar {
   color: red;
   margin-left: 2px;
 }
-.weui-cell__bd{
+
+.weui-cell__bd {
   margin-left: 25px;
 }
-.edit{
+
+.edit {
   position: absolute;
-  bottom:0;
-  margin:0 60px;
+  bottom: 0;
+  margin: 0 60px;
   text-align: center;
-  width: calc(100% - 120px)
+  width: calc(100% - 120px);
 }
-.edit button{
+
+.edit button {
   margin-bottom: 8px;
-  border-radius:5px;
+  border-radius: 5px;
 }

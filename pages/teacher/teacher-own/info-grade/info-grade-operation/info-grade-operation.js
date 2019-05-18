@@ -152,7 +152,7 @@ Page({
       success: function(res) {
         // var result = res.data.code;
         var url = '../info-grade';
-        app.navigator(res, url);
+        app.navigator(res, url, '操作成功');
       }
     });
   },
@@ -175,7 +175,7 @@ Page({
             success: function(res) {
               // var result = res.data.code;
               var url = '../info-grade';
-              app.navigator(res, url);
+              app.navigator(res, url, '删除成功');
             }
           })
         }

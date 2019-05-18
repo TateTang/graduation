@@ -2,5 +2,6 @@
   "usingComponents": {
     "firstPage": "/component/teacher-component/qiandao-component/qiandao",
     "secondPage": "/component/teacher-component/control-component/control",
-    "thirdPage": "/component/teacher-component/own-component/own"}
+    "thirdPage": "/component/teacher-component/own-component/own"
+  }
 }

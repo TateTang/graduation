@@ -1,8 +1,10 @@
 /* pages/teacher/qiandao/qiandao.wxss */
 @import "../../../src/wxss/weui.wxss";
-.weui-cells__title{
+
+.weui-cells__title {
   font-size: 16px;
 }
-.weui-cell__bd{
+
+.weui-cell__bd {
   font-size: 15px;
 }

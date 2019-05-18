@@ -7,9 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name:'',
-    account:'',
-    isedit:true //不可编辑的
+    name: '',
+    account: '',
+    isedit: true, //不可编辑的
+    ishava: false, //工号是否已经存在
   },
 
   /**
@@ -19,35 +20,35 @@ Page({
     this.initValidate() //验证规则函数
     rules: { }
     messages: { }
-      wx.setNavigationBarTitle({
-        title: '个人信息',
-      })
+    wx.setNavigationBarTitle({
+      title: '个人信息',
+    })
     //  console.log(app.globalData.openid);
     var that = this;
     wx.request({
-      url: app.globalData.localhttp +'teacher/getTeacherByOpenId',
+      url: app.globalData.localhttp + 'teacher/getTeacherByOpenId',
       data: {
         'openId': app.globalData.openid
       },
-      method:'GET',
-      success:function(res){
+      method: 'GET',
+      success: function (res) {
         var result = res.data.data;
         // console.log(result);
         // console.log(result.length);
-        if(result==null){
+        if (result == null) {
           that.setData({
-            isedit:false//设置可改变值
+            isedit: false //设置可改变值
           })
           return;
         }
-        console.log(res);
+        // console.log(res);
         that.setData({
           name: result.name,
           account: result.account
         })
       }
     })
-     
+
   },
 
   /**
@@ -99,29 +100,38 @@ Page({
 
   },
   formSubmit: function (e) {
+    var that = this;
     //校验表单
     const params = e.detail.value;
+    if (that.data.ishave) { //没有该学号 可以进行插入  有该学号提示不可以插入
+      wx.showModal({
+        content: '该工号已经被使用请重新输入',
+        showCancel: false
+      })
+      return false;
+    }
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0];
       this.showModal(error);
       return false;
     }
-    var that = this;
-    var formData = e.detail.value;//获取表单中的数据
+    var formData = e.detail.value; //获取表单中的数据
     formData.openid = app.globalData.openid;
-    formData.roleobj = { "id": 1 };
+    formData.roleobj = {
+      "id": 1
+    };
     console.log(JSON.stringify(formData));
     wx.request({
-      url: app.globalData.localhttp+'teacher/update?openId='+app.globalData.openid,
-      data:JSON.stringify(formData),
-      method:'PUT',
+      url: app.globalData.localhttp + 'teacher/update?openId=' + app.globalData.openid,
+      data: JSON.stringify(formData),
+      method: 'PUT',
       header: {
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         var url = '../../teacher-index';
-        app.navigator(res,url);
+        app.navigator(res, url, '操作成功');
       }
     })
   },
@@ -152,4 +162,33 @@ Page({
       showCancel: false,
     })
   },
+  getAccount: function (e) {
+    var that = this;
+    // console.log(e.detail.value);
+    //判断学号有没有被使用过
+    wx.request({
+      url: app.globalData.localhttp + 'teacher/getAll',
+      data: {
+        'account': e.detail.value,
+      },
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        var result = res.data.dataList;
+        // console.log(result.length);
+        if (result.length == 0) { //该学号是否已经存在
+          that.setData({
+            ishave: false
+          })
+        } else {
+          that.setData({
+            ishave: true
+          })
+        }
+        // console.log(that.data.ishave);
+      }
+    })
+  }
 })

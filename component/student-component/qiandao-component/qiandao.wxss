@@ -1,19 +1,28 @@
 /* pages/student/qiandao/qiandao.wxss */
 @import "../../../src/wxss/weui.wxss";
+@import "../../../src/wxss/yzm.wxss";
+
+.page{
+  margin-bottom: 60px;
+}
+
 .myclass {
   line-height: 1.8;
   font-size: 16px;
 }
-.xiangqing .weui-cell__bd{
+
+.xiangqing .weui-cell__bd {
   font-size: 15px;
   color: #999;
 }
+
 .leavecontent {
   margin-left: 5px;
 }
+
 .mini-btn {
   margin-right: 5px;
-  background-color: #EDEDED;
+  background-color: #ededed;
 }
 
 .modal-mask {
@@ -59,6 +68,7 @@
   border-radius: 4rpx;
   font-size: 28rpx;
 }
+
 input-holder {
   color: #666;
   font-size: 28rpx;
@@ -75,18 +85,21 @@ input-holder {
 
 .btn-cancel {
   width: 50%;
-  color: #EDEDED;
+  color: #ededed;
   text-align: center;
   border-right: 1px solid #dedede;
 }
+
 .btn-confirm {
   width: 50%;
-  color: #EDEDED;
+  color: #ededed;
   text-align: center;
 }
-.qiandao-btn{
+
+.qiandao-btn {
   text-align: right;
 }
-.weui-cells__title{
+
+.weui-cells__title {
   font-size: 16px;
 }

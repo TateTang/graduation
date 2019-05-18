@@ -1,9 +1,11 @@
 /* pages/student/control/control.wxss */
 @import "../../../src/wxss/weui.wxss";
 @import "../../../src/wxss/mywxss.wxss";
-.weui-cells__title{
+
+.weui-cells__title {
   font-size: 16px;
 }
-.edit button{
+
+.edit button {
   margin-bottom: 80px;
 }

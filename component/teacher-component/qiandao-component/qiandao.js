@@ -17,17 +17,18 @@ Component({
     list: [],
     satarttime: [],
     endtime: [],
-    arrivetime:[],
+    arrivetime: [],
     index: 0,
     status: [],
-    showIndex:null,
+    showIndex: null,
+    title: '暂无学生签到信息',
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    showBox: function (e) {
+    showBox: function(e) {
       // console.log(e)
       if (this.data.showIndex == e.currentTarget.dataset.index) {
         this.setData({
@@ -41,12 +42,12 @@ Component({
     },
   },
   created() {
-    wx.setNavigationBarTitle({//设置导航栏标题
+    wx.setNavigationBarTitle({ //设置导航栏标题
       title: '签到'
     })
     var satarttime = [];
     var endtime = [];
-    var arrivetime=[];
+    var arrivetime = [];
     var status = [];
     var that = this;
     //获取全部签到信息
@@ -56,25 +57,23 @@ Component({
       data: {
         // 'teaopenId': app.globalData.openid
       },
-      success: function (res) {
+      success: function(res) {
         var list = res.data.dataList; //获取数据
-        console.log(list);
-        console.log(list.length);
         if (list.length == 0) {
           return;
         }
         for (var i = 0; i < list.length; i++) {
-          var stime = util.formatTimeFive(Date.parse(list[i].courseobj.startTime));
-          var etime = util.formatTimeFive(Date.parse(list[i].courseobj.endTime));
-          var atime = util.formatTimeFive(Date.parse(list[i].arrivetime));
+          var stime = util.formatDateOne(util.chaistr(list[i].courseobj.startTime));
+          var etime = util.formatDateOne(util.chaistr(list[i].courseobj.endTime));
+          var atime = util.formatDateOne(util.chaistr(list[i].arrivetime));
           satarttime.push(stime);
           endtime.push(etime);
           arrivetime.push(atime);
-          if (list[i].status == 0 ) {
+          if (list[i].status == 0) {
             status.push("迟到");
           } else if (list[i].status == 1) {
             status.push("已签到");
-          }else {
+          } else {
             status.push("旷课");
           }
         }
@@ -85,6 +84,7 @@ Component({
           arrivetime: arrivetime,
           index: list.length,
           status: status,
+          title: '学生签到信息'
         })
       },
     })

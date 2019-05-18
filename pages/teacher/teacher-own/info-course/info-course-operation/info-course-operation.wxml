@@ -17,55 +17,66 @@
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">开始时间<i class="mystar">*</i></view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker mode="time" value="{{starttime}}" start="06:00" end="22:00" name="startTime" bindchange="bindStartTimeChange" disabled='{{pageType}}'>
-                        <view class="weui-input" name='stime'>{{coursestarttime==''?starttime:coursestarttime}}</view>
-                    </picker>
-                </view>
+          <view class="weui-cell__hd">
+            <view class="weui-label">开始时间
+              <i class="mystar">*</i>
             </view>
-          <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">结束时间<i class="mystar">*</i></view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker mode="time" value="{{endtime}}" start="06:00" end="22:00" name="endTime" bindchange="bindEndTimeChange" disabled='{{pageType}}'>
-                        <view class="weui-input" name='etime'>{{courseendtime==''?endtime:courseendtime}}</view>
-                    </picker>
-                </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="time" value="{{starttime}}" start="06:00" end="22:00" name="startTime" bindchange="bindStartTimeChange" disabled='{{pageType}}'>
+              <view class="weui-input" name='stime'>{{coursestarttime==''?starttime:coursestarttime}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">结束时间
+              <i class="mystar">*</i>
             </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="time" value="{{endtime}}" start="06:00" end="22:00" name="endTime" bindchange="bindEndTimeChange" disabled='{{pageType}}'>
+              <view class="weui-input" name='etime'>{{courseendtime==''?endtime:courseendtime}}</view>
+            </picker>
+          </view>
+        </view>
 
 
-              <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">星期<i class="mystar">*</i></view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker  value="{{index}}" range="{{weekarray}}" bindchange="bindWeekChange" name="week" disabled='{{pageType}}'>
+
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">班级名称
+              <i class="mystar">*</i>
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker value="{{gradeindex}}" range="{{gradearray}}" bindchange="bindGradeChange" name="gradeobj" disabled='{{pageType}}'>
+              <view class="weui-input">{{coursegradename==''?gradearray[gradeindex]:coursegradename}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">签到码
+              <i class="mystar">*</i>
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <!-- <picker  value="{{index}}" range="{{weekarray}}" bindchange="bindWeekChange" name="week" disabled='{{pageType}}'>
                         <view class="weui-input">{{courseweek==''?weekarray[index]:courseweek}}</view>
-                    </picker>
-                </view>
-            </view>
-
-            <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__hd">
-                    <view class="weui-label" >班级名称<i class="mystar">*</i></view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker  value="{{gradeindex}}" range="{{gradearray}}" bindchange="bindGradeChange" name="gradeobj" disabled='{{pageType}}' >
-                        <view class="weui-input">{{coursegradename==''?gradearray[gradeindex]:coursegradename}}</view>
-                    </picker>
-                </view>
-            </view>
+                    </picker> -->
+            <input class="weui-input" name='yzm' placeholder='请输入6位签到码' type="number" value='{{courseyzm}}' disabled='{{pageType}}' />
+          </view>
+        </view>
       </view>
 
-       <view class="edit">
-        <button type='default' form-type='submit'>提交</button>
+      <view class="edit">
+        <button type='default' form-type='submit'>{{operatortitle}}</button>
         <!-- <button type='default' bindtap='deleteCourse' data-courseid='{{courseId}}' data-coursename='{{courseName}}' wx-if="{{pageType}}">删除</button> -->
-       </view> 
+      </view>
     </form>
   </view>
-   
+
 </view>

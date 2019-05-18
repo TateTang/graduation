@@ -11,7 +11,7 @@ Page({
     leavetime: [],
     leavestatus: [],
     index: 0,
-    length:0
+    length: 0
   },
 
   /**
@@ -31,7 +31,7 @@ Page({
       data: {
         'stuopenId': app.globalData.openid,
       },
-      success: function (res) {
+      success: function(res) {
         var list = res.data.dataList; //获取数据
         that.setData({
           length: list.length
@@ -41,7 +41,7 @@ Page({
           return;
         }
         for (var i = 0; i < list.length; i++) {
-          leavetime.push(util.formatTimeThree(Date.parse(list[i].leavetime)));
+          leavetime.push(util.formatDateTwo(util.chaistr(list[i].leavetime)));
           if (list[i].status == 1) {
             leavestatus.push("已通过");
           } else if (list[i].status == 2) {
@@ -109,9 +109,9 @@ Page({
 
   },
   /**
-     * 字符串转换为时间
-     * @param  {String} src 字符串
-     */
+   * 字符串转换为时间
+   * @param  {String} src 字符串
+   */
   // strToDate(dateObj) {
   //   dateObj = dateObj.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/(-)/g, '/')
   //   dateObj = dateObj.slice(0, dateObj.indexOf("."))

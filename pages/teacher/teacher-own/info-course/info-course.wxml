@@ -1,18 +1,18 @@
 <!--pages/teacher/teacher-own/info-course/info-course.wxml-->
 <view class="page">
   <view class="page__bd">
-  <!-- <view class="weui-cells__title">课程列表</view> -->
-  <view class="weui-cells__title" wx:if="{{ishave}}">暂无课程信息</view>
+    <!-- <view class="weui-cells__title">课程列表</view> -->
+    <view class="weui-cells__title" wx:if="{{ishave}}">暂无课程信息</view>
     <block wx:for="{{list}}" wx:key="{{list}}">
-    <view class="weui-cells weui-cells_after-title myclass ">
-      <navigator url="info-course-operation/info-course-operation?courseId={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__bd">{{item.name}}</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </navigator>
+      <view class="weui-cells weui-cells_after-title myclass ">
+        <navigator url="info-course-operation/info-course-operation?courseId={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">{{item.name}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
       </view>
     </block>
   </view>
-<view class="page__bd page__bd_spacing edit">
-    <button  class="weui-btn" type="default" bindtap='addCourse'>发布课程</button>
-</view>
+  <view class="page__bd page__bd_spacing edit">
+    <button class="weui-btn" type="default" bindtap='addCourse'>发布课程</button>
+  </view>
 </view>

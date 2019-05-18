@@ -1,14 +1,17 @@
 /* pages/teacher/teacher-own/info-grade/info-grade.wxss */
 @import "../../../../src/wxss/weui.wxss";
-.myclass{
+
+.myclass {
   line-height: 1.80;
   font-size: 16px;
 }
-.edit{
+
+.edit {
   position: absolute;
-  bottom:0;
-  width: 100%
+  bottom: 0;
+  width: 100%;
 }
-.weui-cells__title{
+
+.weui-cells__title {
   font-size: 16px;
 }
