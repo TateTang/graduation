@@ -4,7 +4,7 @@
     <view class="weui-cells__title">
       <image src='../../../../src/images/qiandao.png'></image>
       <view class='title'>
-        课堂考勤吧 Version {{version}}
+        课堂考勤吧 
       </view>
     </view>
     <view class="weui-cells weui-cells_after-title">
