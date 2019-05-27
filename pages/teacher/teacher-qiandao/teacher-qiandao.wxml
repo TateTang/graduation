@@ -1,0 +1,59 @@
+<!--pages/teacher/teacher-qiandao/teacher-qiandao.wxml-->
+<view class="page">
+  <view class="page__bd">
+
+
+
+    <view class="weui-cells__title"> {{leavetitle}}
+    </view>
+    <block wx:for="{{leavelist}}" wx:key="{{leaveindex}}">
+      <view class="weui-cells weui-cells_after-title myclass" >
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="showLeaveBox" data-leaveindex="{{leaveindex}}">
+          <view class="weui-cell__bd">
+            <view >请假人：{{item.studentobj.name}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">
+            <view>请假状态：{{item.status}}</view>
+          </view>
+        </view>
+        <view wx:if="{{showLeaveIndex==leaveindex?true:false}}" >
+          <view class="weui-cell weui-cell_access ">
+            <view class='weui-cell__bd'>
+              <view>请假时间：{{item.leavetime}}</view>
+              <view>请假原因：{{item.leavecontent}}</view>
+              <view wx:if='{{item.status==2?true:false}}'>
+              驳回原因：{{item.rejectreason==null?'无原因':item.rejectreason}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="weui-cells__title">{{title}}
+    </view>
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <view class="weui-cells weui-cells_after-title myclass">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="showBox" data-index="{{index}}">
+          <view class="weui-cell__bd">
+            <view>签到人：{{list[index].studentobj.gradeobj.name+'-'+list[index].studentobj.name}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">
+            <view>签到状态：{{status[index]}}</view>
+          </view>
+        </view>
+        <view wx:if="{{showIndex==index?true:false}}" >
+          <view class="weui-cell weui-cell_access ">
+            <view class='weui-cell__bd'>
+              <view>签到课程：{{list[index].courseobj.name}}</view>
+              <view>开始时间：{{satarttime[index]}}</view>
+              <view>结束时间：{{endtime[index]}}</view>
+              <view>签到时间：{{arrivetime[index]}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    
+  </view>
+</view>

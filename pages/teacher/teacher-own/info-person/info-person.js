@@ -16,10 +16,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.initValidate() //验证规则函数
-    rules: { }
-    messages: { }
+    rules: {}
+    messages: {}
     wx.setNavigationBarTitle({
       title: '个人信息',
     })
@@ -31,7 +31,7 @@ Page({
         'openId': app.globalData.openid
       },
       method: 'GET',
-      success: function (res) {
+      success: function(res) {
         var result = res.data.data;
         // console.log(result);
         // console.log(result.length);
@@ -54,52 +54,52 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  formSubmit: function (e) {
+  formSubmit: function(e) {
     var that = this;
     //校验表单
     const params = e.detail.value;
@@ -128,7 +128,7 @@ Page({
       header: {
         'Content-Type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         // console.log(res);
         var url = '../../teacher-index';
         app.navigator(res, url, '操作成功');
@@ -162,7 +162,7 @@ Page({
       showCancel: false,
     })
   },
-  getAccount: function (e) {
+  getAccount: function(e) {
     var that = this;
     // console.log(e.detail.value);
     //判断学号有没有被使用过
@@ -175,7 +175,7 @@ Page({
       header: {
         'Content-Type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         var result = res.data.dataList;
         // console.log(result.length);
         if (result.length == 0) { //该学号是否已经存在

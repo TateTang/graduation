@@ -2,7 +2,7 @@
 @import "../../../src/wxss/weui.wxss";
 @import "../../../src/wxss/yzm.wxss";
 
-.page{
+.page {
   margin-bottom: 60px;
 }
 

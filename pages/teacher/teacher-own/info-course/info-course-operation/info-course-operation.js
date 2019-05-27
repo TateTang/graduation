@@ -32,7 +32,6 @@ Page({
       phone: ''
     },
     pageType: true,
-    operatortitle: '保存',
   },
 
   /**
@@ -50,7 +49,6 @@ Page({
     if (options.courseId == -1) {
       this.setData({
         pageType: false,
-        operatortitle: '发布'
       })
     }
     var that = this;
@@ -251,14 +249,16 @@ Page({
     console.log(JSON.stringify(formData)); //打印表单中的数据
     var url = that.data.addUrl; //添加课程信息的url
     var method = 'POST';
-    if (that.data.courseId != -1) { //点击的是编辑按钮， 
-      formData.id = that.data.courseId;
-      url = that.data.updateUrl + "?courseId=" + that.data.courseId; //编辑按钮 修改课程信息
-      formData.startTime = ''; //转换
-      formData.endTime = '';
-      console.log(JSON.stringify(formData)); //编辑的话时间不会修改
-      method = 'PUT';
-    }
+    // if (that.data.courseId != -1) { //点击的是编辑按钮，保存时直接生成一条课程信息 
+    //   formData.id = that.data.courseId;
+    //   url =  that.data.addUrl;
+    //   // url = that.data.updateUrl + "?courseId=" + that.data.courseId; //编辑按钮 修改课程信息
+    //   // formData.startTime = ''; //转换
+    //   // formData.endTime = '';
+    //   console.log(JSON.stringify(formData)); //编辑的话时间不会修改
+    //   // method = 'PUT';
+    //   method = 'POST'
+    // }
     wx.request({
       url: url,
       data: JSON.stringify(formData), //json转字符串
@@ -268,8 +268,9 @@ Page({
       },
       success: function(res) {
         // var result = res.data.code;
-        var url = '../info-course'
-        app.navigator(res, url, '操作成功');
+        var url = '/pages/teacher/teacher-own/info-course/qrcode/qrcode?num=' + formData.yzm;
+        app.navigator(res, url, '发布成功');
+
       }
     });
   },

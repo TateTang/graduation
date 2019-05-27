@@ -18,7 +18,12 @@
     "pages/student/student-own/info-share/info-share",
     "pages/teacher/teacher-own/info-grade/info-grade-operation/info-grade-operation",
     "pages/teacher/teacher-own/info-course/info-course-operation/info-course-operation",
-    "pages/teacher/teacher-own/info-leave/info-leave"
+    "pages/teacher/teacher-own/info-course/qrcode/qrcode",
+    "pages/teacher/teacher-own/info-leave/info-leave",
+    "pages/teacher/teacher-leave/teacher-leave",
+    "pages/teacher/teacher-qiandao/teacher-qiandao",
+    "pages/student/student-leave/student-leave",
+    "pages/student/student-qiandao/student-qiandao"
   ],
   "window": {
     "enablePullDownRefresh": true,

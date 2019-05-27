@@ -1,0 +1,18 @@
+/* pages/teacher/teacher-leave/teacher-leave.wxss */
+@import "../../../src/wxss/weui.wxss";
+
+.page {
+  margin-bottom: 60px;
+}
+
+.weui-cells__title {
+  font-size: 16px;
+}
+
+.weui-form-preview {
+  margin-bottom: 10px;
+}
+
+.page__bd {
+  font-size: 16px;
+}

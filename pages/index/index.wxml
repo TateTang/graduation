@@ -8,7 +8,7 @@
 
     <view class="button-sp-area">
       <view class='title'>
-        请选择对应的角色进入小程序！
+        请选择对应角色进入小程序
       </view>
       <button class="weui-btn" type="primary" plain="true" open-type='getUserInfo' bindgetuserinfo='teacherLogin'>我是老师</button>
       <button class="weui-btn" type="default" plain="true" open-type='getUserInfo' bindgetuserinfo='studentLogin'>我是学生</button>

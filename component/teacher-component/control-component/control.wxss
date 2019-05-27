@@ -1,17 +1,21 @@
 /* pages/teacher/control/control.wxss */
 @import "../../../src/wxss/weui.wxss";
-.page{
+
+.page {
   margin-bottom: 60px;
 }
 
-.weui-cells__title {
+.myclass {
+  line-height: 1.80;
   font-size: 16px;
 }
 
-.weui-form-preview {
-  margin-bottom: 10px;
+.edit {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
-.page__bd {
+.weui-cells__title {
   font-size: 16px;
 }

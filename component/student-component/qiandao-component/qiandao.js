@@ -44,10 +44,57 @@ Component({
     //签到按钮
     pass: function(e) {
       var that = this;
+      wx.scanCode({
+        // onlyFromCamera: true,
+        onlyFromCamera: false,
+        success(res) {
+          console.log(res);
+          wx.request({
+            url: app.globalData.localhttp + '/course/getCourseByYzm',
+            method: 'GET',
+            data: {
+              'courseId': e.target.dataset.courseid,
+              'yzm': res.result
+            },
+            success: function(res) {
+              var result = res.data.data;
+              console.log(result);
+              if (result == null) { //验证码不正确 不进行签到 提示签到失败，清空验证码 自动聚焦isFocus:true
+                wx.showToast({
+                  title: '签到二维码错误\r\n请重新扫描',
+                  icon: "none",
+                  duration: 1500
+                })
+                return;
+              } else { //验证码校验正确 进行签到 插入签到信息
+                console.log('验证码正确');
+                var formData = that.data.formData;
+                wx.request({
+                  url: app.globalData.localhttp + 'arrive/create',
+                  data: JSON.stringify(formData), //json转字符串
+                  method: 'POST',
+                  header: {
+                    'Content-Type': 'application/json'
+                  },
+                  success: function(result) {
+                    // console.log(result);
+                    var url = 'student-index?type=1';
+                    app.navigator(result, url, '课程签到成功');
+                  }
+                });
+              }
+            }
+          })
+        }
+      })
+      /*
       that.setData({
+        
         yzm_flag: true,
         isFocus: true
+        
       })
+*/
       // var that = this;
       // wx.showModal({
       //   title: '课程签到提示',
@@ -107,42 +154,7 @@ Component({
       // console.log(that.data.courseyzm) //验证码
       // console.log(e.target.dataset.courseid); //课程id
       //请求 根据验证码和课程id去查询信息
-      wx.request({
-        url: app.globalData.localhttp + '/course/getCourseByYzm',
-        method: 'GET',
-        data: {
-          'courseId': e.target.dataset.courseid,
-          'yzm': that.data.courseyzm
-        },
-        success: function(res) {
-          var result = res.data.data;
-          console.log(result);
-          if (result == null) { //验证码不正确 不进行签到 提示签到失败，清空验证码 自动聚焦isFocus:true
-            wx.showToast({
-              title: '签到码错误\r\n请重新输入',
-              icon: "none",
-              duration: 1500
-            })
-            return;
-          } else { //验证码校验正确 进行签到 插入签到信息
-            console.log('验证码正确');
-            var formData = that.data.formData;
-            wx.request({
-              url: app.globalData.localhttp + 'arrive/create',
-              data: JSON.stringify(formData), //json转字符串
-              method: 'POST',
-              header: {
-                'Content-Type': 'application/json'
-              },
-              success: function(result) {
-                // console.log(result);
-                var url = 'student-index?type=1';
-                app.navigator(result, url, '课程签到成功');
-              }
-            });
-          }
-        }
-      })
+
     },
     /**
      * 表单提交事件 对话框确认按钮点击事件

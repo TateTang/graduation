@@ -1,10 +1,21 @@
 /* pages/teacher/qiandao/qiandao.wxss */
 @import "../../../src/wxss/weui.wxss";
 
-.weui-cells__title {
+.page {
+  margin-bottom: 60px;
+}
+
+.myclass {
+  line-height: 1.80;
   font-size: 16px;
 }
 
-.weui-cell__bd {
-  font-size: 15px;
+.edit {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.weui-cells__title {
+  font-size: 16px;
 }

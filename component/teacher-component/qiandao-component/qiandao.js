@@ -1,7 +1,6 @@
 // pages/teacher/qiandao/qiandao.js
 //获取应用实例
-var util = require('../../../utils/util.js');
-const app = getApp()
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -14,14 +13,9 @@ Component({
    * 组件的初始数据
    */
   data: {
+    //课程信息
     list: [],
-    satarttime: [],
-    endtime: [],
-    arrivetime: [],
-    index: 0,
-    status: [],
-    showIndex: null,
-    title: '暂无学生签到信息',
+    ishave: false
   },
 
   /**
@@ -45,47 +39,26 @@ Component({
     wx.setNavigationBarTitle({ //设置导航栏标题
       title: '签到'
     })
-    var satarttime = [];
-    var endtime = [];
-    var arrivetime = [];
-    var status = [];
+    //获取对应的课程信息
     var that = this;
-    //获取全部签到信息
     wx.request({
-      url: app.globalData.localhttp + '/arrive/getAll',
+      url: app.globalData.localhttp + 'course/getAll',
       method: 'GET',
       data: {
-        // 'teaopenId': app.globalData.openid
+        'teaopenId': app.globalData.openid
       },
       success: function(res) {
         var list = res.data.dataList; //获取数据
+        console.log(list);
         if (list.length == 0) {
-          return;
+          that.setData({
+            ishave: true
+          })
+        } else {
+          that.setData({
+            list: list, //设置变量
+          })
         }
-        for (var i = 0; i < list.length; i++) {
-          var stime = util.formatDateOne(util.chaistr(list[i].courseobj.startTime));
-          var etime = util.formatDateOne(util.chaistr(list[i].courseobj.endTime));
-          var atime = util.formatDateOne(util.chaistr(list[i].arrivetime));
-          satarttime.push(stime);
-          endtime.push(etime);
-          arrivetime.push(atime);
-          if (list[i].status == 0) {
-            status.push("迟到");
-          } else if (list[i].status == 1) {
-            status.push("已签到");
-          } else {
-            status.push("旷课");
-          }
-        }
-        that.setData({
-          list: list,
-          satarttime: satarttime,
-          endtime: endtime,
-          arrivetime: arrivetime,
-          index: list.length,
-          status: status,
-          title: '学生签到信息'
-        })
       },
     })
   }

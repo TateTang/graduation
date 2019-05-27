@@ -13,7 +13,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" name='name' placeholder='请输入课程名称' value='{{courseName}}' />
+            <input class="weui-input" name='name' placeholder='请输入课程名称' value='{{courseName}}' disabled='{{pageType}}' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -23,7 +23,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <picker mode="time" value="{{starttime}}" start="06:00" end="22:00" name="startTime" bindchange="bindStartTimeChange" disabled='{{pageType}}'>
+            <picker mode="time" value="{{starttime}}" start="06:00" end="22:00" name="startTime" bindchange="bindStartTimeChange">
               <view class="weui-input" name='stime'>{{coursestarttime==''?starttime:coursestarttime}}</view>
             </picker>
           </view>
@@ -35,7 +35,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <picker mode="time" value="{{endtime}}" start="06:00" end="22:00" name="endTime" bindchange="bindEndTimeChange" disabled='{{pageType}}'>
+            <picker mode="time" value="{{endtime}}" start="06:00" end="22:00" name="endTime" bindchange="bindEndTimeChange">
               <view class="weui-input" name='etime'>{{courseendtime==''?endtime:courseendtime}}</view>
             </picker>
           </view>
@@ -67,13 +67,13 @@
             <!-- <picker  value="{{index}}" range="{{weekarray}}" bindchange="bindWeekChange" name="week" disabled='{{pageType}}'>
                         <view class="weui-input">{{courseweek==''?weekarray[index]:courseweek}}</view>
                     </picker> -->
-            <input class="weui-input" name='yzm' placeholder='请输入6位签到码' type="number" value='{{courseyzm}}' disabled='{{pageType}}' />
+            <input class="weui-input" name='yzm' placeholder='请输入6位签到码' type="number" value='{{courseyzm}}' />
           </view>
         </view>
       </view>
 
       <view class="edit">
-        <button type='default' form-type='submit'>{{operatortitle}}</button>
+        <button type='default' form-type='submit'>发布签到</button>
         <!-- <button type='default' bindtap='deleteCourse' data-courseid='{{courseId}}' data-coursename='{{courseName}}' wx-if="{{pageType}}">删除</button> -->
       </view>
     </form>

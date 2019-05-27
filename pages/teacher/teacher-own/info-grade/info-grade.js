@@ -35,7 +35,7 @@ Page({
       url: app.globalData.localhttp + 'grade/getAll',
       method: 'GET',
       data: {
-        'teacheropenId': app.globalData.openid
+        // 'teaopenId': app.globalData.openid
       },
       success: function(res) {
         var list = res.data.dataList; //获取数据
