@@ -21,7 +21,7 @@
             <view class='weui-cell__bd'>
               <view>请假时间：{{item.leavetime}}</view>
               <view>请假原因：{{item.leavecontent}}</view>
-              <view wx:if='{{item.status==2?true:false}}'>
+              <view wx:if="{{item.status=='未通过'?true:false}}">
               驳回原因：{{item.rejectreason==null?'无原因':item.rejectreason}}</view>
             </view>
           </view>

@@ -45,8 +45,8 @@ Component({
     pass: function(e) {
       var that = this;
       wx.scanCode({
-        // onlyFromCamera: true,
-        onlyFromCamera: false,
+        onlyFromCamera: true,
+        // onlyFromCamera: false,
         success(res) {
           console.log(res);
           wx.request({
